@@ -29,10 +29,10 @@ public class UserController {
 	@Autowired
 	private UserValidator uValidator;
 
-/*	@InitBinder("user")
+	@InitBinder("user")
 	private void initUserBinder(WebDataBinder binder) {
 		binder.addValidators(uValidator);
-	}*/
+	}
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView userListPage() {
@@ -74,7 +74,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-	public ModelAndView authenticate(@ModelAttribute User user, HttpSession session, BindingResult result) {
+	public ModelAndView authenticate(@ModelAttribute @Valid User user, HttpSession session, BindingResult result) {
 		ModelAndView mav = new ModelAndView("login");
 		if (result.hasErrors())
 			return mav;
