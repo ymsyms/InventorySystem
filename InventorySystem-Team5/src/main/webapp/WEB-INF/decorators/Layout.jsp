@@ -4,10 +4,14 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <html>
 <head>
+<c:url value="/css/style.css" var="style" /> 
+<link rel="STYLESHEET" type="text/css" href="${style}" /> 
+<!-- Bootstrap CSS -->
+<c:url
+	value="/css/bootstrap-3.3.7-dist/css/bootstrap.min.css"
+	var="bootstrap" />
+<link rel="stylesheet" href="${bootstrap}">
 <%@include file="Header.jsp"%>
-<c:url value="/css/simple.css" var="ss"/>
-<link rel="STYLESHEET" type="text/css"
-	href="${ss}" />
 <dec:head />
 </head>
 <body>
@@ -15,7 +19,6 @@
 		<tr>
 			<td style="width: 180; border: 1" valign="top">
 				<div>
-					
 					<%@ include file="Menu.jsp"%>
 				</div>
 			</td>
@@ -29,11 +32,11 @@
 			</td>
 		</tr>
 	</table>
-	
+
 	<!-- ======== Footer ======== -->
-				<div id="footer" align="center">
-				  <hr>
-					<small> &copy; ISS Team5 Inventory System 2017 </small>
-				</div>
+	<div id="footer" align="center">
+		<hr>
+		<small> &copy; ISS Team5 Inventory System 2017 </small>
+	</div>
 </body>
 </html>
