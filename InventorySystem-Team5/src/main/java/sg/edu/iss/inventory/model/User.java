@@ -29,8 +29,8 @@ public class User {
 	private String password;
 	@Column(name = "userRole")
 	private String userRole;
-	@Column(name = "userStauts")
-	private String userStauts;
+	@Column(name = "userStatus")
+	private String userStatus;
 	@OneToMany(mappedBy="userorder")
 	private List<Order> orders;
 	
@@ -39,13 +39,13 @@ public class User {
 		// TODO Auto-generated constructor stub
 	}
 
-	public User(String userId, String userName, String password, String userRole, String userStauts, List<Order> orders) {
+	public User(String userId, String userName, String password, String userRole, String userStatus, List<Order> orders) {
 		super();
 		this.userId = userId;
 		this.userName = userName;
 		this.password = password;
 		this.userRole = userRole;
-		this.userStauts = userStauts;
+		this.userStatus = userStatus;
 		this.orders.addAll(orders) ;
 	}
 
@@ -81,12 +81,12 @@ public class User {
 		this.userRole = userRole;
 	}
 	
-	public String getUserStauts() {
-		return userStauts;
+	public String getUserStatus() {
+		return userStatus;
 	}
 
-	public void setUserStauts(String userStauts) {
-		this.userStauts = userStauts;
+	public void setUserStatus(String userStatus) {
+		this.userStatus = userStatus;
 	}
 
 	public List<Order> getOrders() {
