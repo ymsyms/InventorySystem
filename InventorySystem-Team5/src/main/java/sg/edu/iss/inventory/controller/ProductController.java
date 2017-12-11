@@ -67,21 +67,16 @@ public class ProductController {
 	public ModelAndView searchProduct(@ModelAttribute Product product, HttpSession session, BindingResult result) {
 		ModelAndView mav = new ModelAndView("product-list");
 		
-		if (product.getPartNo() != null) {
-			ArrayList<Product> productList = new ArrayList<Product>();
-			Product p = productService.findProducts(product.getPartNo());
-			if(p != null)
+		ArrayList<Product> productList = productService.searchProduct(product);		
+			if(productList != null)
 			{
-				productList.add(p);
 				mav.addObject("productList", productList);
 			}
 			else
 			{
 				//to add error message
 				mav = new ModelAndView("redirect:/product/list");
-			}
-		}					
-		
+			}				
 		return mav;
 	}
 	
