@@ -20,7 +20,6 @@ public class ProductSupplier implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name = "partNo")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String partNo;
 	@Id
 	@Column(name = "supplierId")

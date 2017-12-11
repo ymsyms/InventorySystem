@@ -24,7 +24,6 @@ public class TransactionDetail implements Serializable{
 	private int transactionId;
 	@Id
 	@Column(name = "partNo")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String partNo;
 	@Column(name = "transactionQty")
 	private int transactionQty;
