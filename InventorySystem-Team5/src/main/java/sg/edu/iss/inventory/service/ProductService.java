@@ -17,5 +17,11 @@ public interface ProductService {
 	void removeProduct(Product product);
 
 	ArrayList<Product> searchProduct(Product product);
+	
+	ArrayList<Product> searchAllCarDealer();
+	
+	ArrayList<Product> searchAllPartDescription();	
+
+	ArrayList<Product> searchAllColor();
 
 }

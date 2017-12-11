@@ -12,20 +12,55 @@
 </head>
 <body>
 
-	<h3>Product List Page</h3>	
+	<h3>Product List Page</h3>
 
-	<form:form modelAttribute="product" method="POST" action="${pageContext.request.contextPath}/product/search" >
-	<table>
-	<tr>
-	<td><spring:message code="product.partNo" /></td>
-	<td><form:input path="partNo" size="40" /></td>
-	</tr>
-	
-	</table>
-	
-	<form:button name="submit" type="submit" value="Search"><img src="${pageContext.request.contextPath}/image/button_submit.gif" alt="" align="middle">
-	</form:button>
-</form:form>
+	<form:form modelAttribute="product" method="POST"
+		action="${pageContext.request.contextPath}/product/search">
+		
+		<table >
+			<tr>
+				<td><spring:message code="product.partNo" /></td>
+				<td><form:input path="partNo" size="20" /></td>
+			<td></td>
+				<td><spring:message code="product.shelfLocation" /></td>
+				<td><form:input path="shelfLocation" size="20" /></td>
+			</tr>
+			<tr>
+				<td><spring:message code="product.carDealer" /></td>
+
+				<c:forEach var="product" items="${carDealerList}" varStatus="mapIndex">
+
+					<td><input type="radio" id="chk${mapIndex.index}"
+						name="chk${mapIndex.index}" /> ${product}</td>
+				</c:forEach>
+			</tr>
+			
+			<tr>
+				<td><spring:message code="product.partDescription" /></td>
+
+				<c:forEach var="product" items="${partDescriptionList}" varStatus="mapIndex">
+
+					<td><input type="checkbox" id="chk${mapIndex.index}"
+						name="chk${mapIndex.index}" /> ${product}</td>
+				</c:forEach>
+			</tr>
+
+			<tr>
+				<td><spring:message code="product.color" /></td>
+
+				<c:forEach var="product" items="${colorList}" varStatus="mapIndex">
+
+					<td><input type="checkbox" id="chk${mapIndex.index}"
+						name="chk${mapIndex.index}" /> ${product}</td>
+				</c:forEach>
+			</tr>	
+		</table>
+
+		<form:button name="submit" type="submit" value="Search">
+			<img src="${pageContext.request.contextPath}/image/button_submit.gif"
+				alt="" align="middle">
+		</form:button>
+	</form:form>
 
 	<a href="${pageContext.request.contextPath}/product/create">Add
 		Product</a>
@@ -35,13 +70,13 @@
 			<thead>
 				<tr>
 					<th><spring:message code="product.partNo" /></th>
-					<th><spring:message code="product.partNo" /></th>
-					<th><spring:message code="product.partNo" /></th>
-					<th><spring:message code="product.partNo" /></th>
-					<th>Color</th>
-					<th>Dimension</th>
-					<th>Reorder Level</th>
-					<th>Shelf Location</th>
+					<th><spring:message code="product.carDealer" /></th>
+					<th><spring:message code="product.partDescription" /></th>
+					<th><spring:message code="product.availableQty" /></th>
+					<th><spring:message code="product.color" /></th>
+					<th><spring:message code="product.dimension" /></th>
+					<th><spring:message code="product.reorderLevel" /></th>
+					<th><spring:message code="product.shelfLocation" /></th>
 				</tr>
 			</thead>
 			<tbody>

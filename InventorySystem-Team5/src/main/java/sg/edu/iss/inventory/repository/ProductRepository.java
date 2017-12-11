@@ -15,5 +15,14 @@ public interface ProductRepository extends JpaRepository<Product, String> {
 	
 	@Query("SELECT p FROM Product p WHERE p.productStatus='Valid'")
 	ArrayList<Product> findActiveProduct();
+	
+	@Query("SELECT distinct p.carDealer FROM Product p WHERE p.productStatus='Valid'")
+	ArrayList<Product> findcarDealer();	
+	
+	@Query("SELECT distinct p.partDescription FROM Product p WHERE p.productStatus='Valid'")
+	ArrayList<Product> findPartDescription();	
+	
+	@Query("SELECT distinct p.color FROM Product p WHERE p.productStatus='Valid'")
+	ArrayList<Product> findColor();	
 
 }

@@ -33,6 +33,16 @@ public class ProductController {
 		ModelAndView mav = new ModelAndView("product-list");
 		ArrayList<Product> productList = (ArrayList<Product>)productService.findAllProduct();
 		mav.addObject("productList", productList);
+		
+		ArrayList<Product> carDealerList = (ArrayList<Product>)productService.searchAllCarDealer();
+		mav.addObject("carDealerList", carDealerList);
+		
+		ArrayList<Product> partDescriptionList = (ArrayList<Product>)productService.searchAllPartDescription();
+		mav.addObject("partDescriptionList", partDescriptionList);
+		
+		ArrayList<Product> colorList = (ArrayList<Product>)productService.searchAllColor();
+		mav.addObject("colorList", colorList);
+		
 		return mav;
 	}	
 	
@@ -54,7 +64,8 @@ public class ProductController {
 				//to add error message
 				mav = new ModelAndView("redirect:/product/list");
 			}
-		}			
+		}					
+		
 		return mav;
 	}
 	
