@@ -122,4 +122,25 @@ public class ProductController {
 		redirectAttributes.addFlashAttribute("message", message);
 		return mav;
 	}
+	
+	@RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
+	public ModelAndView productDetailPage(@PathVariable String id) {
+		ModelAndView mav = new ModelAndView("product-detail");
+		Product product = productService.findProducts(id);
+		mav.addObject("product", product);
+		mav.addObject("productlist", productService.findAllProduct());
+		return mav;
+	}
+
+	@RequestMapping(value = "/detail/{id}", method = RequestMethod.POST)
+	public ModelAndView productDetail(@ModelAttribute @Valid Product product, BindingResult result,
+			@PathVariable String id, final RedirectAttributes redirectAttributes) /* throws ProductNotFound */ {
+
+		if (result.hasErrors())
+			return new ModelAndView("product-detail");
+
+		ModelAndView mav = new ModelAndView("redirect:/product/list");
+
+		return mav;
+	}
 }

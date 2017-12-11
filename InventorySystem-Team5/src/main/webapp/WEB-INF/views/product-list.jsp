@@ -13,12 +13,18 @@
 <body>
 
 	<h3>Product List Page</h3>	
-	
+
 	<form:form modelAttribute="product" method="POST" action="${pageContext.request.contextPath}/product/search" >
-	<form:input path="partNo" size="40" />
-			<form:button name="submit" type="submit" value="Search"><img src="${pageContext.request.contextPath}/image/button_submit.gif" alt="" align="middle">
-				
-					</form:button>
+	<table>
+	<tr>
+	<td><spring:message code="product.partNo" /></td>
+	<td><form:input path="partNo" size="40" /></td>
+	</tr>
+	
+	</table>
+	
+	<form:button name="submit" type="submit" value="Search"><img src="${pageContext.request.contextPath}/image/button_submit.gif" alt="" align="middle">
+	</form:button>
 </form:form>
 
 	<a href="${pageContext.request.contextPath}/product/create">Add
@@ -28,10 +34,10 @@
 
 			<thead>
 				<tr>
-					<th>Product partNo</th>
-					<th>Car Dealer</th>
-					<th>Part Description</th>
-					<th>Available Quantity</th>
+					<th><spring:message code="product.partNo" /></th>
+					<th><spring:message code="product.partNo" /></th>
+					<th><spring:message code="product.partNo" /></th>
+					<th><spring:message code="product.partNo" /></th>
 					<th>Color</th>
 					<th>Dimension</th>
 					<th>Reorder Level</th>
@@ -49,6 +55,9 @@
 						<td align="left">${product.dimension}</td>
 						<td align="left">${product.reorderLevel}</td>
 						<td align="left">${product.shelfLocation}</td>
+						<td align="center"><a
+							href="${pageContext.request.contextPath}/product/detail/${product.partNo}.html"><spring:message
+									code="caption.detail" /></a></td>
 						<td align="center"><a
 							href="${pageContext.request.contextPath}/product/edit/${product.partNo}.html"><spring:message
 									code="caption.edit" /></a></td>
