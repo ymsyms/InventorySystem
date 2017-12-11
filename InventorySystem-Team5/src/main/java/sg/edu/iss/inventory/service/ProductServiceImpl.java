@@ -54,16 +54,16 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	@Transactional
 	public ArrayList<Product> searchProduct(Product product) {
-//		ArrayList<Product> l = new ArrayList<Product>();
+		ArrayList<Product> l = new ArrayList<Product>();
+		l = productRepository.serachProductByPartNo(product.getPartNo());
 //		if (product.getPartNo() != null) {
-//			l.add(productRepository.findProductByPartNo(product.getPartNo()));
+//			l = productRepository.serachProductByPartNo(product.getPartNo());
 //		} else if (product.getCarDealer() != null && product.getColor() != null) {
 //			l = productRepository.findProductByDealerNColor(product.getColor(), product.getCarDealer());
 //		} else {
 //			l = productRepository.findProductByCarDealer(product.getCarDealer());
 //		}
-//		return l;
-		return null;
+		return l;		
 	}
 	
 	@Override
