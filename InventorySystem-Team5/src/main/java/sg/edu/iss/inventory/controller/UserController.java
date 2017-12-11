@@ -1,7 +1,6 @@
 package sg.edu.iss.inventory.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
 
@@ -70,7 +69,7 @@ public class UserController {
 			us.setUser(u);
 			// PUT CODE FOR SETTING SESSION ID
 			us.setSessionId(session.getId());
-			mav = new ModelAndView("redirect:/user/list");
+			mav = new ModelAndView("redirect:/product/list");
 		}
 		else
 		{		
