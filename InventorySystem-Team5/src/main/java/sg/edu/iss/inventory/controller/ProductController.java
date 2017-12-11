@@ -165,4 +165,13 @@ public class ProductController {
 
 		return mav;
 	}
+	
+	@RequestMapping(value = "/use", method = RequestMethod.POST)
+	public ModelAndView useProduct(@ModelAttribute Product product, BindingResult result) {
+		ModelAndView mav = new ModelAndView("product-list");
+		
+		
+				mav = new ModelAndView("redirect:/product/list");
+		return mav;
+	}
 }

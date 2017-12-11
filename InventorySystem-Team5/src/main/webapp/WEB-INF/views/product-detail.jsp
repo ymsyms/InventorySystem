@@ -42,7 +42,16 @@
 				<td>${product.shelfLocation}</td>
 			</tr>
 			<tr>
+			<form:form modelAttribute="product" method="POST"
+		action="${pageContext.request.contextPath}/product/use">
 				<td><input type="submit" value="Use" class="blcass"/></td>
+				<td></td>
+				<td></td>
+				</form:form>
+			</tr>
+			
+			<tr>
+				<td><input type="submit" value="Transaction History" class="blcass"/></td>
 				<td></td>
 				<td></td>
 			</tr>

@@ -20,7 +20,6 @@ public class User {
 	/** Attributes for Course **/
 	@Id
 	@Column(name = "userId")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String userId;
 	@Basic
 	@Column(name = "userName")
