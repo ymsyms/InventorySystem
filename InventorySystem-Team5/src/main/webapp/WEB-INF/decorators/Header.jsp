@@ -10,10 +10,10 @@
 			<div id="navbar6" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
 					<li class="active"><a href="#">Product</a></li>
-					<li><a href="#">Record Usage</a></li>
-					<li><a href="../user/logout">Log Out</a></li>
+					<li><a href="#">Record Usage</a></li>				
 					<li><a href="#">Users</a></li>
 					<li><a href="#">Suppliers</a></li>
+					<li><a href="../user/logout">Log Out</a></li>
 				</ul>
 			</div>
 			</c:if>

@@ -12,7 +12,14 @@ Responsive navbar-brand image CSS
   padding: 15px;
   width: 80%;
 }
+.navbar-inverse {
+    background-color: #337ab7 !important;
+    border-color: #337ab7 !important;
+}
 
+.navbar-inverse .navbar-brand {
+    color: #fff !important;
+}
 /* EXAMPLE 6 - Background Logo*/
 .example6 .navbar-brand{ 
   background: url(../image/logo.png) left / contain no-repeat;
@@ -25,14 +32,21 @@ Responsive navbar-brand image CSS
     width: 30% !important; 
 }
 
-h2 {
+h4 {
 	margin: 1em 0 0.5em 0;
 	font-weight: normal;
 	font-size: 18px;
 	line-height: 40px;
 	padding: 5px 15px;
 	color: #333 !important;
-    border-bottom: 1px solid #333; 
 	font-family: 'Muli', sans-serif;
 	text-align: left;
+}
+
+.loginForm
+{
+	border: 1px solid #333; 
+	background : #333;
+	color : #fff;
+	padding : 3% 0% 0% 0%;
 }

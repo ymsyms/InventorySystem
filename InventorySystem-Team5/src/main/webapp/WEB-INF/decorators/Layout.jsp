@@ -15,9 +15,6 @@
 </head>
 <body>
 	<div class="container">
-		<h3>
-			<spring:message code="${bodyTitle}" />
-		</h3>
 		<dec:body />
 	</div>
 	<div id="footer" align="center">
