@@ -12,7 +12,7 @@
 </head>
 <body>
 
-	<h2>Product List Page</h2>
+	<h4>Product List Page</h4>
 
 	<form:form modelAttribute="product" method="POST"
 		action="${pageContext.request.contextPath}/product/search">

@@ -3,28 +3,22 @@ package sg.edu.iss.inventory.model;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 @Entity
-@IdClass(TransactionDetailId.class)
 @Table(name = "transactiondetail")
 public class TransactionDetail implements Serializable{
+	
 	/**
-	 * 
+	 * serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
-	@Id
-	@Column(name = "transactionId")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int transactionId;
-	@Id
-	@Column(name = "partNo")
-	private String partNo;
+
+	@EmbeddedId
+	private TransactionDetailId id;
+	
 	@Column(name = "transactionQty")
 	private int transactionQty;
 
@@ -32,27 +26,18 @@ public class TransactionDetail implements Serializable{
 		super();
 	}
 
-	public TransactionDetail(int transactionId, String partNo, int transactionQty) {
+	public TransactionDetail(TransactionDetailId id, int transactionQty) {
 		super();
-		this.transactionId = transactionId;
-		this.partNo = partNo;
+		this.id = id;
 		this.transactionQty = transactionQty;
 	}
 
-	public int getTransactionId() {
-		return transactionId;
+	public TransactionDetailId getId() {
+		return id;
 	}
 
-	public void setTransactionId(int transactionId) {
-		this.transactionId = transactionId;
-	}
-
-	public String getPartNo() {
-		return partNo;
-	}
-
-	public void setPartNo(String partNo) {
-		this.partNo = partNo;
+	public void setId(TransactionDetailId id) {
+		this.id = id;
 	}
 
 	public int getTransactionQty() {
@@ -67,8 +52,7 @@ public class TransactionDetail implements Serializable{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((partNo == null) ? 0 : partNo.hashCode());
-		result = prime * result + transactionId;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 
@@ -81,14 +65,13 @@ public class TransactionDetail implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		TransactionDetail other = (TransactionDetail) obj;
-		if (partNo == null) {
-			if (other.partNo != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!partNo.equals(other.partNo))
-			return false;
-		if (transactionId != other.transactionId)
+		} else if (!id.equals(other.id))
 			return false;
 		return true;
 	}
 
+	
 }
