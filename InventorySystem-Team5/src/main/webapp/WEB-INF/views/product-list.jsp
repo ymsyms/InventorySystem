@@ -19,8 +19,9 @@
 		
 		<table >
 			<tr>
-				<td><spring:message code="product.partNo" /></td>
-				<td><form:input path="partNo" size="20" /></td>
+			<td><spring:message code="partNo" /></td>
+				<td><form:input path="partNo" /></td>
+				<td><form:errors path="partNo" cssStyle="color: red;" /></td>
 			<td></td>
 				<td><spring:message code="product.shelfLocation" /></td>
 				<td><form:input path="shelfLocation" size="20" /></td>
