@@ -58,9 +58,8 @@ public class UserController {
 	}
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(Model model,HttpSession session) {
-		session.removeAttribute("USERSESSION");
-		model.addAttribute("user", new User());
-		return "login";
+		session.invalidate();
+		return "redirect:/user/login";
 	}
 	
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
