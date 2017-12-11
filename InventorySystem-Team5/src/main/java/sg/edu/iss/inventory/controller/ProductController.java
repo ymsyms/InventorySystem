@@ -133,10 +133,10 @@ public class ProductController {
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public ModelAndView newProductPage() {
 		ModelAndView mav = new ModelAndView("product-new", "product", new Product());
-		mav.addObject("productlist", productService.findAllProduct());
+		//mav.addObject("productlist", productService.findAllProduct());
 		return mav;
 	}
-
+	
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public ModelAndView createNewProduct(@ModelAttribute @Valid Product product, BindingResult result,
 			final RedirectAttributes redirectAttributes) {
@@ -153,7 +153,7 @@ public class ProductController {
 
 		redirectAttributes.addFlashAttribute("message", message);
 		return mav;
-	}
+	}		
 	
 	@RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
 	public ModelAndView productDetailPage(@PathVariable String id) {

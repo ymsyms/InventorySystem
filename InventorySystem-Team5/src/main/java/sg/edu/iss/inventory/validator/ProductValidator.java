@@ -19,9 +19,6 @@ public class ProductValidator implements Validator{
 		ValidationUtils.rejectIfEmpty(errors, "carDealer", "error.product.carDealer.empty");
 		ValidationUtils.rejectIfEmpty(errors, "partDescription", "error.product.partDescription.empty");
 		ValidationUtils.rejectIfEmpty(errors, "color", "error.product.color.empty");
-		ValidationUtils.rejectIfEmpty(errors, "dimension", "error.product.dimension.empty");
-		ValidationUtils.rejectIfEmpty(errors, "shelfLocation", "error.product.shelfLocation.empty");
-		ValidationUtils.rejectIfEmpty(errors, "productStatus", "error.product.productStatus.empty");
 	    System.out.println(product.toString());
 	}
 }

@@ -3,13 +3,15 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script src="/resources/demos/external/jquery-mousewheel/jquery.mousewheel.js"></script>
-  <script>
-  $(function() {
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script
+	src="/resources/demos/external/jquery-mousewheel/jquery.mousewheel.js"></script>
+<script>
+	$(function() {
 		$(".spinner").spinner({
 			min : 0
 		});
@@ -62,12 +64,8 @@
 				<td><form:input path="shelfLocation" /></td>
 				<td><form:errors path="shelfLocation" cssStyle="color: red;" /></td>
 			</tr>
-<tr></tr>
+			<tr></tr>
 			<tr>
-				
-					<td><input type="submit" value="Back" class="blcass" /></td>
-					<td></td>
-					<td></td>
 
 				<td><input type="submit" value="Update" class="blcass" /></td>
 				<td></td>

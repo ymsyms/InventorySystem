@@ -25,19 +25,15 @@ public interface ProductRepository extends JpaRepository<Product, String> {
 	@Query("SELECT p FROM Product p WHERE p.partNo =:partNo and p.productStatus='Valid'")
 	Product findProductByPartNo(@Param("partNo") String partNo);
 	
+	
+	//search query
 	@Query("SELECT p FROM Product p WHERE p.partNo LIKE %:partNo% and p.productStatus='Valid'")
 	ArrayList<Product> serachProductByPartNo(@Param("partNo") String partNo);
 	
 	@Query("SELECT p FROM Product p WHERE p.carDealer=:carDealer and p.productStatus='Valid'")
-	Product findProductByCarDealer(@Param("carDealer") String carDealer);
+	Product findProductByCarDealer(@Param("carDealer") String carDealer);	
 	
-	@Query("SELECT p FROM Product p WHERE p.color=:color and p.productStatus='Valid'")
-	Product findProductByColor(@Param("color") String color);
-
-	@Query("SELECT p FROM Product p WHERE p.shelfLocation LIKE %:shelfLocation% and p.productStatus='Valid'")
-	Product findProductByShelfLocation(@Param("shelfLocation") String shelfLocation);
-	
-	@Query("SELECT p FROM Product p WHERE p.carDealer=:carDealer and p.color=:color and p.productStatus='Valid'")
-	Product findProductByDealerNColor(@Param("carDealer") String carDealer, @Param("color") String color);
+	@Query("SELECT p FROM Product p WHERE p.partDescription=:partDescription and p.productStatus='Valid'")
+	Product findProductByPartDescription(@Param("partDescription") String partDescription);
 
 }

@@ -22,9 +22,7 @@
 			<td><spring:message code="partNo" /></td>
 				<td><form:input path="partNo" /></td>
 				<td><form:errors path="partNo" cssStyle="color: red;" /></td>
-			<td></td>
-				<td><spring:message code="product.shelfLocation" /></td>
-				<td><form:input path="shelfLocation" size="20" /></td>
+			<td></td>				
 			</tr>
 			<tr>
 				<td><spring:message code="product.carDealer" /></td>
@@ -46,15 +44,7 @@
 				</c:forEach>
 			</tr>
 
-			<%-- <tr>
-				<td><spring:message code="product.color" /></td>
-
-				<c:forEach var="product" items="${colorList}" varStatus="mapIndex">
-
-					<td><input type="checkbox" id="chk${mapIndex.index}"
-						name="chk${mapIndex.index}" /> ${product}</td>
-				</c:forEach>
-			</tr>	 --%>
+			
 		</table>
 
 		<form:button name="submit" type="submit" value="Search">
