@@ -56,7 +56,12 @@ public class UserController {
 		model.addAttribute("user", new User());
 		return "login";
 	}
-	
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(Model model,HttpSession session) {
+		session.removeAttribute("USERSESSION");
+		model.addAttribute("user", new User());
+		return "login";
+	}
 	
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
 	public ModelAndView authenticate(@ModelAttribute User user, HttpSession session, BindingResult result) {
@@ -69,7 +74,7 @@ public class UserController {
 			us.setUser(u);
 			// PUT CODE FOR SETTING SESSION ID
 			us.setSessionId(session.getId());
-			mav = new ModelAndView("redirect:/user/list");
+			mav = new ModelAndView("redirect:/product/list");
 		}
 		else
 		{		
