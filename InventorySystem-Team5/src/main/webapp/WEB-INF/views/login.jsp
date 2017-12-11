@@ -2,9 +2,6 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <html>
-<spring:url value="/css/simple.css" var="style"/>
-<link rel="STYLESHEET" type="text/css"
-	href="${style}" />
 <form:form modelAttribute="user" method="POST" action="${pageContext.request.contextPath}/user/authenticate" >
 	<table class="framed" >
 		<tr>
