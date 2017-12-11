@@ -274,7 +274,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('kk234','Kiruthika','234kk','mechanic','Valid'),('momozzz','Momo','momo222','administrator','Valid'),('runzz23','Runze','pa55w0rd','mechanic','Valid'),('sunm23','Sun Ming','sming23','mechanic','Valid'),('yimonz','Yimon Soe','password','administrator','Valid');
+INSERT INTO `user` VALUES ('kk234','Kiruthika','234kk','mechanic','Valid'),('momozzz','Momo','momo222','administrator','Valid'),('runzz23','Runze','pa55w0rd','mechanic','Valid'),('sunm23','Sun Ming','sming23','mechanic','Valid'),('yimon','Yimon Soe','yimon','administrator','Valid');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
