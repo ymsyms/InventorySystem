@@ -33,6 +33,16 @@ public class ProductController {
 		ModelAndView mav = new ModelAndView("product-list");
 		ArrayList<Product> productList = (ArrayList<Product>)productService.findAllProduct();
 		mav.addObject("productList", productList);
+		
+		ArrayList<Product> carDealerList = (ArrayList<Product>)productService.searchAllCarDealer();
+		mav.addObject("carDealerList", carDealerList);
+		
+		ArrayList<Product> partDescriptionList = (ArrayList<Product>)productService.searchAllPartDescription();
+		mav.addObject("partDescriptionList", partDescriptionList);
+		
+		ArrayList<Product> colorList = (ArrayList<Product>)productService.searchAllColor();
+		mav.addObject("colorList", colorList);
+		
 		return mav;
 	}	
 	
@@ -54,7 +64,8 @@ public class ProductController {
 				//to add error message
 				mav = new ModelAndView("redirect:/product/list");
 			}
-		}			
+		}					
+		
 		return mav;
 	}
 	
@@ -120,6 +131,27 @@ public class ProductController {
 		mav.setViewName("redirect:/product/list");
 
 		redirectAttributes.addFlashAttribute("message", message);
+		return mav;
+	}
+	
+	@RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
+	public ModelAndView productDetailPage(@PathVariable String id) {
+		ModelAndView mav = new ModelAndView("product-detail");
+		Product product = productService.findProducts(id);
+		mav.addObject("product", product);
+		mav.addObject("productlist", productService.findAllProduct());
+		return mav;
+	}
+
+	@RequestMapping(value = "/detail/{id}", method = RequestMethod.POST)
+	public ModelAndView productDetail(@ModelAttribute @Valid Product product, BindingResult result,
+			@PathVariable String id, final RedirectAttributes redirectAttributes) /* throws ProductNotFound */ {
+
+		if (result.hasErrors())
+			return new ModelAndView("product-detail");
+
+		ModelAndView mav = new ModelAndView("redirect:/product/list");
+
 		return mav;
 	}
 }

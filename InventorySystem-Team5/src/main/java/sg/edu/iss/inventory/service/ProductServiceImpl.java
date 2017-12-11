@@ -65,4 +65,24 @@ public class ProductServiceImpl implements ProductService {
 //		return l;
 		return null;
 	}
+	
+	@Override
+	@Transactional
+	public ArrayList<Product> searchAllCarDealer()
+	{
+		return productRepository.findcarDealer();
+	}
+	
+	@Override
+	@Transactional
+	public ArrayList<Product> searchAllPartDescription()
+	{
+		return productRepository.findPartDescription();
+	}
+
+	@Override
+	@Transactional
+	public ArrayList<Product> searchAllColor() {
+		return productRepository.findColor();
+	}
 }

@@ -1,3 +1,6 @@
+
+DROP SCHEMA IF EXISTS `sa45team05` ;
+
 CREATE DATABASE  IF NOT EXISTS `sa45team05` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `sa45team05`;
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
