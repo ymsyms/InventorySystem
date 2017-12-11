@@ -1,11 +1,13 @@
 package sg.edu.iss.inventory.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -28,11 +31,24 @@ public class ProductController {
 	
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView productListPage(Model model) {
+	public ModelAndView productListPage(Model model, @RequestParam(required = false) Integer page,@ModelAttribute("product") Product product) {
 		model.addAttribute("product",new Product());
 		ModelAndView mav = new ModelAndView("product-list");
-		ArrayList<Product> productList = (ArrayList<Product>)productService.findAllProduct();
-		mav.addObject("productList", productList);
+		List<Product> productList = (List<Product>) productService.findAllProduct();
+		PagedListHolder<Product> pagedListHolder = new PagedListHolder<>(productList);
+		pagedListHolder.setPageSize(5);
+		mav.addObject("maxPages", pagedListHolder.getPageCount());
+		if (page == null || page < 1 || page > pagedListHolder.getPageCount())
+			page = 1;
+
+		mav.addObject("page", page);
+		if (page == null || page < 1 || page > pagedListHolder.getPageCount()) {
+			pagedListHolder.setPage(0);
+			mav.addObject("productList", pagedListHolder.getPageList());
+		} else if (page <= pagedListHolder.getPageCount()) {
+			pagedListHolder.setPage(page - 1);
+			mav.addObject("productList", pagedListHolder.getPageList());
+		}
 		
 		ArrayList<Product> carDealerList = (ArrayList<Product>)productService.searchAllCarDealer();
 		mav.addObject("carDealerList", carDealerList);
