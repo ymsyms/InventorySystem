@@ -13,17 +13,17 @@ public class OrderDetail implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@EmbeddedId
 	private OrderDetailId id;
-	@Column(name="transactionQty")
-	private int transactionQty;	
+	@Column(name = "orderQty")
+	private int orderQty;
 	
 	public OrderDetail() {
 		super();
 	}
 
-	public OrderDetail(OrderDetailId id, int transactionQty) {
+	public OrderDetail(OrderDetailId id, int orderQty) {
 		super();
 		this.id = id;
-		this.transactionQty = transactionQty;
+		this.orderQty = orderQty;
 	}
 
 	public OrderDetailId getId() {
@@ -34,12 +34,12 @@ public class OrderDetail implements Serializable{
 		this.id = id;
 	}
 
-	public int getTransactionQty() {
-		return transactionQty;
+	public int getOrderQty() {
+		return orderQty;
 	}
 
-	public void setTransactionQty(int transactionQty) {
-		this.transactionQty = transactionQty;
+	public void setOrderQty(int orderQty) {
+		this.orderQty = orderQty;
 	}
 
 	public static long getSerialversionuid() {
@@ -73,7 +73,7 @@ public class OrderDetail implements Serializable{
 
 	@Override
 	public String toString() {
-		return "OrderDetail [id=" + id + ", transactionQty=" + transactionQty + "]";
+		return "OrderDetail [id=" + id + ", orderQty=" + orderQty + "]";
 	}
 
 

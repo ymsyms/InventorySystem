@@ -30,7 +30,7 @@
 				<c:forEach var="product" items="${carDealerList}" varStatus="mapIndex">
 
 					<td><input type="radio" id="chk${mapIndex.index}"
-						name="chk${mapIndex.index}" /> ${product}</td>
+						name="chk${mapIndex.index}" /> ${product.partNo}</td>
 				</c:forEach>
 			</tr>
 			
