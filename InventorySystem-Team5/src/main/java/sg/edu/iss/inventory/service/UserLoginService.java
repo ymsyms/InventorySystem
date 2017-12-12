@@ -1,9 +1,12 @@
 package sg.edu.iss.inventory.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -18,6 +21,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import sg.edu.iss.inventory.model.Product;
 import sg.edu.iss.inventory.repository.UserRepository;
 
 @Service("UserLoginService")
@@ -37,7 +41,7 @@ public class UserLoginService implements UserDetailsService {
 				
 				List<GrantedAuthority> authorities =
                 buildUserAuthority(user.getUserRole());
-
+				
 		return buildUserForAuthentication(user, authorities);
 
 	}

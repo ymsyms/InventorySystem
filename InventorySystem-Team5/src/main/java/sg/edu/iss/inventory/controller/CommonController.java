@@ -1,6 +1,7 @@
 package sg.edu.iss.inventory.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -85,7 +86,11 @@ public class CommonController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView login(@RequestParam(value = "error", required = false) String error,
-			@RequestParam(value = "logout", required = false) String logout, HttpServletRequest request) {
+			@RequestParam(value = "logout", required = false) String logout, HttpServletRequest request,
+			HttpSession session) {
+
+		HashMap<Product, Integer> usageSummary = new HashMap<Product, Integer>();
+		session.setAttribute("usageSummary", usageSummary);
 
 		ModelAndView model = new ModelAndView();
 		if (error != null) {

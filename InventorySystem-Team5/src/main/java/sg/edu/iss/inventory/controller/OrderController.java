@@ -87,6 +87,8 @@ public class OrderController {
 		putNewDataToOrderList(request, orderList);
 
 		User u = userLoginService.getUserDetails();
+
+		
 		oService.logOrders(u, orderList);
 
 		orderList = null;
