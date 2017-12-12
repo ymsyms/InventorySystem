@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import sg.edu.iss.inventory.model.ProductSupplier;
-import sg.edu.iss.inventory.model.ProductSupplierId;
 
 public interface ProductSupplierRepository extends JpaRepository<ProductSupplier, Integer> {
 
