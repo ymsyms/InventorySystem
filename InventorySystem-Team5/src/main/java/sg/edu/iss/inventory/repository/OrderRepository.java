@@ -9,5 +9,8 @@ import sg.edu.iss.inventory.model.Order;
 public interface OrderRepository extends JpaRepository<Order,Integer>
 {
 	@Query("SELECT o FROM Order o where o.orderId = :orderId")
-	Order findOrderByOrderId(@Param("orderId") String orderId);
+	Order findOrderByOrderId(@Param("orderId") int orderId);
+	
+	@Query("SELECT o FROM Order o where o.supplier.supplierId = :supplierId")
+	Order findOrderBySupplierId(@Param("supplierId") Integer supplierId);
 }

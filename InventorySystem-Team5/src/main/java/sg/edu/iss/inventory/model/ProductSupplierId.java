@@ -17,7 +17,7 @@ public class ProductSupplierId implements Serializable{
     String partNo;
 	
 	@Column(name = "supplierId")
-    Integer supplierId;
+    int supplierId;
       
       
 	public ProductSupplierId() {
