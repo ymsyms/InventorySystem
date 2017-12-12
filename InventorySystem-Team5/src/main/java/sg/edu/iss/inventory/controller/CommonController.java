@@ -1,7 +1,5 @@
 package sg.edu.iss.inventory.controller;
 
-import java.util.ArrayList;
-
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -18,50 +16,22 @@ import org.springframework.web.servlet.ModelAndView;
 
 import sg.edu.iss.inventory.model.User;
 import sg.edu.iss.inventory.service.UserService;
-import sg.edu.iss.inventory.validator.UserValidator;
+import sg.edu.iss.inventory.validator.LoginValidator;
 
 @RequestMapping(value="user")
 @Controller
-public class UserController {
+public class CommonController {
 	
 	@Autowired
 	UserService userService;
 	@Autowired
-	private UserValidator uValidator;
+	private LoginValidator lValidator;
 
 	@InitBinder("user")
 	private void initUserBinder(WebDataBinder binder) {
-		binder.addValidators(uValidator);
+		binder.addValidators(lValidator);
 	}
-	
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView userListPage() {
-		ModelAndView mav = new ModelAndView("user-list");
-		ArrayList<User> userList = (ArrayList<User>)userService.findAllUser();
-		mav.addObject("userList", userList);
-		return mav;
-	}
-	
-	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public String newUserPage(Model model) {
-		User user = new User();
-		model.addAttribute(user);
-		return "user-new";
-	}
-	
-//	@RequestMapping(value="/create",method= RequestMethod.POST)
-//	public ModelAndView createNewUser(@ModelAttribute UserController user,BiBindingResult result,final RedirectAttributes redirectAttributes)
-//	{
-////		if(result.hasError())
-////		{
-////			return new ModelAndView("user-new");
-////		}
-//		
-//		ModelAndView modelAndView = new ModelAndView();
-//		
-//		return modelAndView;
-//	}
-	
+
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String logic(Model model) {
 		model.addAttribute("user", new User());
@@ -73,7 +43,7 @@ public class UserController {
 		return "redirect:/user/login";
 	}
 	
-	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView authenticate(@ModelAttribute @Valid User user, HttpSession session, BindingResult result) {
 		ModelAndView mav = new ModelAndView("login");
 		if (result.hasErrors())

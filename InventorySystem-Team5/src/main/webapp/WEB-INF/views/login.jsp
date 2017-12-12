@@ -4,7 +4,7 @@
 <html>
   <h4>Sign In System</h4>
 <form:form modelAttribute="user" method="POST"
-	action="${pageContext.request.contextPath}/user/authenticate"
+	action="${pageContext.request.contextPath}/user/login"
 	class="form-horizontal loginForm">
 	<div class="form-group">
 		<label for="userId" class="control-label col-sm-2"> <spring:message

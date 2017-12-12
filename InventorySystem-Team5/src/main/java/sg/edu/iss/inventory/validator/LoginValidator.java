@@ -8,7 +8,7 @@ import org.springframework.validation.Validator;
 import sg.edu.iss.inventory.model.User;
 
 @Component
-public class UserValidator implements Validator {
+public class LoginValidator implements Validator {
 
 	@Override
 	public boolean supports(Class<?> clazz) {
@@ -18,7 +18,7 @@ public class UserValidator implements Validator {
 	@Override
 	public void validate(Object target, Errors errors) {
 		User u = (User) target;
-		ValidationUtils.rejectIfEmpty(errors, "userId", "error.user.userid.empty");
+		ValidationUtils.rejectIfEmpty(errors, "userId", "error.user.userId.empty");
 		ValidationUtils.rejectIfEmpty(errors, "password", "error.user.password.empty");
 		System.out.println(u.toString());
 	}
