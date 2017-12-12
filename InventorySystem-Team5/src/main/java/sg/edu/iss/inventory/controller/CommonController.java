@@ -35,12 +35,6 @@ public class CommonController {
 		binder.addValidators(lValidator);
 	}
 
-//	@RequestMapping(value = "/login", method = RequestMethod.GET)
-//	public String logic(Model model) {
-//		model.addAttribute("user", new User());
-//		return "login";
-//	}
-
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(Model model, HttpSession session) {
 		session.invalidate();
@@ -102,31 +96,4 @@ public class CommonController {
 			return model;
 
 		}
-//
-//	@RequestMapping(value = "/login", method = RequestMethod.POST)
-//	public ModelAndView authenticate(@ModelAttribute @Valid User user, BindingResult result, HttpSession session) {
-//		ModelAndView mav = new ModelAndView();
-//
-//		if (result.hasErrors())
-//			return new ModelAndView("login");
-//		UserSession us = new UserSession();
-//		if (user.getUserId() != null && user.getPassword() != null) {
-//			User u = userService.authenticate(user.getUserId(), user.getPassword());
-//			if (u != null) {
-//				us.setUser(u);
-//				// PUT CODE FOR SETTING SESSION ID
-//				us.setSessionId(session.getId());
-//				HashMap<Product, Integer> usageSummary = new HashMap<Product, Integer>();
-//				session.setAttribute("usageSummary", usageSummary);
-//				mav = new ModelAndView("redirect:/product/list");
-//			} else {
-//				return mav;
-//			}
-//
-//		} else {
-//			return mav;
-//		}
-//		session.setAttribute("USERSESSION", us);
-//		return mav;
-//	}
 }

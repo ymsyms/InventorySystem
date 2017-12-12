@@ -41,7 +41,6 @@ public class UserLoginService implements UserDetailsService {
 	}
 
 	private User buildUserForAuthentication(sg.edu.iss.inventory.model.User user, List<GrantedAuthority> authorities) {
-		System.out.println(encoder.encode("yimon"));
 		return new User(user.getUserId(), user.getPassword(), user.isEnabled(), true, true, true, authorities);
 	}
 
