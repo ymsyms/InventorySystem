@@ -35,13 +35,14 @@ public class CommonController {
 	@Autowired
 	UserService userService;
 	@Autowired
-	ProductService productService;	
+	ProductService productService;
 	@Autowired
 	private LoginValidator lValidator;
-	
+
 	@RequestMapping(value = { "/", "/welcome**" }, method = RequestMethod.GET)
-	public ModelAndView productListPage(Model model, @RequestParam(required = false) Integer page,@ModelAttribute("product") Product product) {
-		model.addAttribute("product",new Product());
+	public ModelAndView productListPage(Model model, @RequestParam(required = false) Integer page,
+			@ModelAttribute("product") Product product) {
+		model.addAttribute("product", new Product());
 		ModelAndView mav = new ModelAndView("product-list");
 		List<Product> productList = (List<Product>) productService.findAllProduct();
 		PagedListHolder<Product> pagedListHolder = new PagedListHolder<>(productList);
@@ -58,19 +59,18 @@ public class CommonController {
 			pagedListHolder.setPage(page - 1);
 			mav.addObject("productList", pagedListHolder.getPageList());
 		}
-		
-		ArrayList<Product> carDealerList = (ArrayList<Product>)productService.searchAllCarDealer();
+
+		ArrayList<Product> carDealerList = (ArrayList<Product>) productService.searchAllCarDealer();
 		mav.addObject("carDealerList", carDealerList);
-		
-		ArrayList<Product> partDescriptionList = (ArrayList<Product>)productService.searchAllPartDescription();
+
+		ArrayList<Product> partDescriptionList = (ArrayList<Product>) productService.searchAllPartDescription();
 		mav.addObject("partDescriptionList", partDescriptionList);
-		
-		ArrayList<Product> colorList = (ArrayList<Product>)productService.searchAllColor();
+
+		ArrayList<Product> colorList = (ArrayList<Product>) productService.searchAllColor();
 		mav.addObject("colorList", colorList);
-		
+
 		return mav;
-	}	
-	
+	}
 
 	@InitBinder("user")
 	private void initUserBinder(WebDataBinder binder) {
@@ -82,7 +82,7 @@ public class CommonController {
 		session.invalidate();
 		return "redirect:/user/login";
 	}
-	
+
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView login(@RequestParam(value = "error", required = false) String error,
 			@RequestParam(value = "logout", required = false) String logout, HttpServletRequest request) {
@@ -100,42 +100,42 @@ public class CommonController {
 		return model;
 
 	}
-	
+
 	// customize the error message
-		private String getErrorMessage(HttpServletRequest request, String key) {
+	private String getErrorMessage(HttpServletRequest request, String key) {
 
-			Exception exception = (Exception) request.getSession().getAttribute(key);
+		Exception exception = (Exception) request.getSession().getAttribute(key);
 
-			String error = "";
-			if (exception instanceof BadCredentialsException) {
-				error = "Invalid username and password!";
-			} else if (exception instanceof LockedException) {
-				error = exception.getMessage();
-			} else {
-				error = "Invalid username and password!";
-			}
-
-			return error;
+		String error = "";
+		if (exception instanceof BadCredentialsException) {
+			error = "Invalid username and password!";
+		} else if (exception instanceof LockedException) {
+			error = exception.getMessage();
+		} else {
+			error = "Invalid username and password!";
 		}
 
-		// for 403 access denied page
-		@RequestMapping(value = "/403", method = RequestMethod.GET)
-		public ModelAndView accesssDenied() {
+		return error;
+	}
 
-			ModelAndView model = new ModelAndView();
+	// for 403 access denied page
+	@RequestMapping(value = "/403", method = RequestMethod.GET)
+	public ModelAndView accesssDenied() {
 
-			// check if user is login
-			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-			if (!(auth instanceof AnonymousAuthenticationToken)) {
-				UserDetails userDetail = (UserDetails) auth.getPrincipal();
-				System.out.println(userDetail);
+		ModelAndView model = new ModelAndView();
 
-				model.addObject("username", userDetail.getUsername());
+		// check if user is login
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (!(auth instanceof AnonymousAuthenticationToken)) {
+			UserDetails userDetail = (UserDetails) auth.getPrincipal();
+			System.out.println(userDetail);
 
-			}
-
-			model.setViewName("403");
-			return model;
+			model.addObject("username", userDetail.getUsername());
 
 		}
+
+		model.setViewName("403");
+		return model;
+
+	}
 }
