@@ -32,10 +32,10 @@ public interface ProductRepository extends JpaRepository<Product, String> {
 	@Query("SELECT p FROM Product p WHERE p.partNo LIKE %:partNo% and p.productStatus='Valid'")
 	ArrayList<Product> serachProductByPartNo(@Param("partNo") String partNo);
 
-	@Query("SELECT p FROM Product p WHERE p.carDealer=:carDealer and p.productStatus='Valid'")
+	@Query("SELECT p FROM Product p WHERE p.carDealer LIKE %:carDealer% and p.productStatus='Valid'")
 	ArrayList<Product> findProductByCarDealer(@Param("carDealer") String carDealer);
 
-	@Query("SELECT p FROM Product p WHERE p.partDescription=:partDescription and p.productStatus='Valid'")
+	@Query("SELECT p FROM Product p WHERE p.partDescription LIKE %:partDescription% and p.productStatus='Valid'")
 	ArrayList<Product> findProductByPartDescription(@Param("partDescription") String partDescription);
 
 }
