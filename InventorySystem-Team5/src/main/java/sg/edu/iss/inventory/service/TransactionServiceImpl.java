@@ -11,11 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import sg.edu.iss.inventory.controller.UserSession;
 import sg.edu.iss.inventory.model.Product;
 import sg.edu.iss.inventory.model.Transaction;
 import sg.edu.iss.inventory.model.TransactionDetail;
