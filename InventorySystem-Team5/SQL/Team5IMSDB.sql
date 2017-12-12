@@ -277,9 +277,9 @@ CREATE TABLE `user` (
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` VALUES ('kk234','Kiruthika','$2a$10$g4RZLzfZcxDs69VR8wm5/.Xuzc2o1koQllF5zY.tba3l2CMwH4Z4W','ROLE_MECHANIC','Valid'),
-('momozzz','Momo','$2a$10$g4RZLzfZcxDs69VR8wm5/.Xuzc2o1koQllF5zY.tba3l2CMwH4Z4W','ROLE_ADMIN','Valid'),
-('runzz23','Runze','$2a$10$g4RZLzfZcxDs69VR8wm5/.Xuzc2o1koQllF5zY.tba3l2CMwH4Z4W','ROLE_MECHANIC','Valid'),
-('sunm23','Sun Ming','$2a$10$g4RZLzfZcxDs69VR8wm5/.Xuzc2o1koQllF5zY.tba3l2CMwH4Z4W','ROLE_ADMIN','Valid'),
+('momo','Momo','$2a$10$g4RZLzfZcxDs69VR8wm5/.Xuzc2o1koQllF5zY.tba3l2CMwH4Z4W','ROLE_MECHANIC','Valid'),
+('runze','Runze','$2a$10$g4RZLzfZcxDs69VR8wm5/.Xuzc2o1koQllF5zY.tba3l2CMwH4Z4W','ROLE_MECHANIC','Valid'),
+('sunming','Sun Ming','$2a$10$g4RZLzfZcxDs69VR8wm5/.Xuzc2o1koQllF5zY.tba3l2CMwH4Z4W','ROLE_ADMIN','Valid'),
 ('yimon','Yimon Soe','$2a$10$g4RZLzfZcxDs69VR8wm5/.Xuzc2o1koQllF5zY.tba3l2CMwH4Z4W','ROLE_ADMIN','Valid');
 
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
