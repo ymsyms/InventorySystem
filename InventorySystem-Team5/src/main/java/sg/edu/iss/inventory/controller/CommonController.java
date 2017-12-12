@@ -44,10 +44,11 @@ public class CommonController {
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public ModelAndView authenticate(@ModelAttribute @Valid User user, HttpSession session, BindingResult result) {
-		ModelAndView mav = new ModelAndView("login");
+	public ModelAndView authenticate(@ModelAttribute @Valid User user,BindingResult result,HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		
 		if (result.hasErrors())
-			return mav;
+			return  new ModelAndView("login");
 		UserSession us = new UserSession();
 		if (user.getUserId() != null && user.getPassword() != null) {
 			User u = userService.authenticate(user.getUserId(), user.getPassword());
