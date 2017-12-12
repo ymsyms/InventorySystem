@@ -14,12 +14,11 @@ public class UserValidator implements Validator {
 	public boolean supports(Class<?> clazz) {
 		return User.class.isAssignableFrom(clazz);
 	}
-	
+
 	@Override
 	public void validate(Object target, Errors errors) {
 		User u = (User) target;
 		ValidationUtils.rejectIfEmpty(errors, "userId", "error.user.userid.empty");
-		ValidationUtils.rejectIfEmpty(errors, "userName", "error.user.name.empty");
 		ValidationUtils.rejectIfEmpty(errors, "password", "error.user.password.empty");
 		System.out.println(u.toString());
 	}
