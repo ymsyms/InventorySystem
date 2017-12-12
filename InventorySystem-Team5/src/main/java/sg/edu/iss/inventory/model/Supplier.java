@@ -25,7 +25,7 @@ public class Supplier {
 	@Column(name = "supplierContactNo")
 	private String supplierContactNo;
 	@Column(name = "supplierStatus")
-	private String supplierStatus;
+	String supplierStatus;
 	@OneToMany(mappedBy="supplier")
 	private List<Order> suppliers;
 	public Supplier() {
@@ -70,8 +70,6 @@ public class Supplier {
 	public void setSuppliers(List<Order> suppliers) {
 		this.suppliers.addAll(suppliers);
 	}
-	
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

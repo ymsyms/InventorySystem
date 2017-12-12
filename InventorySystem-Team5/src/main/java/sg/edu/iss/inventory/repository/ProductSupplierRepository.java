@@ -11,5 +11,5 @@ import sg.edu.iss.inventory.model.ProductSupplier;
 public interface ProductSupplierRepository extends JpaRepository<ProductSupplier, Integer> {
 
 	@Query("SELECT p FROM ProductSupplier p where p.id.supplierId = :supplierId")
-	ArrayList<ProductSupplier> findProductSupplierByProductId(@Param("supplierId") int supplierId);
+	ArrayList<ProductSupplier> findProductSupplierBySupplierId(@Param("supplierId") int supplierId);
 }

@@ -33,33 +33,39 @@ public class ReportServiceImpl implements ReportService {
 	ProductRepository ProductRepository;
 
 	// to check supplier
+	@Override
 	@Transactional
 	public Supplier findSupplierbySupplierId(int supplierId) {
 		return SupplierRepository.findSupplierbySupplierId(supplierId);
 	}
 
 	// to retrieve order
+	@Override
 	@Transactional
-	public ArrayList<Order> findOrderBySupplierId(int supplierId) {
+	public ArrayList<Order> findOrderBySupplierId(Supplier supplierId) {
+		
 		return OrderRepository.findOrderBySupplierId(supplierId);
 	}
 
 	//Ord.Qty
 	// to retrieve order detail
+	@Override
 	@Transactional
-	public ArrayList<OrderDetail> findOrderDetailByOrderId(int orderId) {
+	public OrderDetail findOrderDetailByOrderId(int orderId) {
 		return OrderDetailRepository.findOrderDetailByOrderId(orderId);
 	}
 
 	//PartNo,UnitPrice,Min.Ord.Qty
 	// to retrieve product price by supplier ID
+	@Override
 	@Transactional
 	public ArrayList<ProductSupplier> findProductSupplierByProductId(int supplierId) {
-		return productSupplierRepository.findProductSupplierByProductId(supplierId);
+		return productSupplierRepository.findProductSupplierBySupplierId(supplierId);
 	}
 	
 	//availQty,ReorderLvl
 	// to retrieve product price by supplier ID
+		@Override
 		@Transactional
 		public Product findProductByPartNo(String partNo) {
 			return ProductRepository.findProductByPartNo(partNo);

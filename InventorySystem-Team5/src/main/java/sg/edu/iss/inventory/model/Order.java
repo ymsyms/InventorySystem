@@ -16,21 +16,21 @@ import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name = "order")
+@Table(name = "`order`")
 public class Order {
 	@Id
-	@Column(name = "orderId")
+	@Column(name = "`orderId`")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int orderId;
 	@Temporal(TemporalType.DATE)
-	@Column(name = "orderDate")
+	@Column(name = "`orderDate`")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date orderDate;
 	@ManyToOne
-	@JoinColumn(name = "userId")
+	@JoinColumn(name = "`userId`")
 	private  User userorder;
 	@ManyToOne
-	@JoinColumn(name = "supplierId")
+	@JoinColumn(name = "`supplierId`")
 	private Supplier supplier;
 
 	public Order() {

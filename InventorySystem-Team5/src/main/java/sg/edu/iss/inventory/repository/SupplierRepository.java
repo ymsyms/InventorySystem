@@ -8,6 +8,6 @@ import sg.edu.iss.inventory.model.Supplier;
 
 public interface SupplierRepository extends JpaRepository<Supplier,Integer> {
 
-	@Query("SELECT s FROM Supplier s WHERE s.supplierId =:supplierId and s.supplierId='Valid'")
+	@Query("SELECT s FROM Supplier s WHERE s.supplierId =:supplierId ")
 	Supplier findSupplierbySupplierId(@Param("supplierId") int supplierId);
 }
