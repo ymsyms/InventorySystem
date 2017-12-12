@@ -3,55 +3,35 @@ package sg.edu.iss.inventory.model;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="orderdetail")
 public class OrderDetail implements Serializable{
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	@Id
-	@Column(name="orderId")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int orderId;
-	@Id
-	@Column(name="partNo")
-	private String partNo;
+	@EmbeddedId
+	private OrderDetailId id;
 	@Column(name="transactionQty")
-	private int transactionQty;
-
+	private int transactionQty;	
+	
 	public OrderDetail() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public OrderDetail(int orderId, String partNo, int transactionQty) {
+	public OrderDetail(OrderDetailId id, int transactionQty) {
 		super();
-		this.orderId = orderId;
-		this.partNo = partNo;
+		this.id = id;
 		this.transactionQty = transactionQty;
 	}
 
-	public int getOrderId() {
-		return orderId;
+	public OrderDetailId getId() {
+		return id;
 	}
 
-	public void setOrderId(int orderId) {
-		this.orderId = orderId;
-	}
-
-	public String getPartNo() {
-		return partNo;
-	}
-
-	public void setPartNo(String partNo) {
-		this.partNo = partNo;
+	public void setId(OrderDetailId id) {
+		this.id = id;
 	}
 
 	public int getTransactionQty() {
@@ -62,12 +42,15 @@ public class OrderDetail implements Serializable{
 		this.transactionQty = transactionQty;
 	}
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((partNo == null) ? 0 : partNo.hashCode());
-		result = prime * result + orderId;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 
@@ -80,14 +63,18 @@ public class OrderDetail implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		OrderDetail other = (OrderDetail) obj;
-		if (partNo == null) {
-			if (other.partNo != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!partNo.equals(other.partNo))
-			return false;
-		if (orderId != other.orderId)
+		} else if (!id.equals(other.id))
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "OrderDetail [id=" + id + ", transactionQty=" + transactionQty + "]";
+	}
+
 
 }
