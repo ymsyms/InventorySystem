@@ -22,7 +22,12 @@
 					<td>Supplier ID</td>
 					
 				<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-					<td><form:input path="supplierId" /></td>
+				
+<%-- 					<td><form:input path="supplierId" /></td> --%>
+
+
+		<td><input type="text" name="supplierId" required /></td>
+		
 				<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 					<td><input type="submit" value="Generate Report"
 						class="blcass" /></td>
