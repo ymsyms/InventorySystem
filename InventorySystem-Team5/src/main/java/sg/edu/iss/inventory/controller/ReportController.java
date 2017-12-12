@@ -47,6 +47,9 @@ public class ReportController {
 		// generate supplier ID/Name for Report
 		Supplier supplier = reportService.findSupplierbySupplierId(supplierId);
 		if (supplier != null) {
+			
+			mav.addObject("supplierId", supplierId);
+			
 			ArrayList<Double> unitPrice = new ArrayList<Double>();
 			ArrayList<Integer> ordQty = new ArrayList<Integer>();
 			ArrayList<Double> price= new ArrayList<Double>();

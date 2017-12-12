@@ -52,13 +52,13 @@ h4 {
 }
 
 .divReportHead {
-    background: Grey;
-    border: 5px dash gray;
-    margin: 0; 
+    background: lightGrey;
 }
 
 .divReportBody {
     background: lightblue;
-    border: 5px dash gray;
-    margin: 0; 
+}
+
+.row{
+    overflow: hidden; 
 }
