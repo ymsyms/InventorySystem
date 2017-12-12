@@ -19,16 +19,10 @@
 				</script>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="active"><a href="/inventory/product/list">Product</a></li>
-					<li><a href="/inventory/transaction/usageSummary">Record
-							Usage</a></li>
-					<li><a href="/inventory/admin/user/list">Users</a></li>
-					<li><a href="/inventory/admin/supplier/list">Suppliers</a></li>
-
-					<li><a href="javascript:formSubmit()"> <c:if
-								test="${pageContext.request.userPrincipal.name != null}">
-							${pageContext.request.userPrincipal.name}
-												</c:if>Logout
-					</a>
+					<li><a href="/inventory/transaction/usageSummary">RecordUsage</a></li>
+					<li><a href="/inventory/admin/user/list">User</a></li>
+					<li><a href="/inventory/admin/supplier/list">Supplier</a></li>
+					<li><a href="javascript:formSubmit()">SignOut</a></li>
 				</ul>
 			</div>
 		</c:if>
