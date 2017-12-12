@@ -8,15 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<!-- <script type="text/javascript">
-		function validateForm() {
-			var a = document.forms["Form"]["searchVar"].value;
-			if (a == null || a == "") {
-				alert("Please Fill Required Field");
-				return false;
-			}
-		}
-	</script> -->
+
 <title>Insert title here</title>
 </head>
 <body>

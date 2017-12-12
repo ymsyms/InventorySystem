@@ -48,6 +48,7 @@ CREATE TABLE `order` (
 
 LOCK TABLES `order` WRITE;
 /*!40000 ALTER TABLE `order` DISABLE KEYS */;
+INSERT INTO `order` VALUES ('1', '2017-02-23', 'kk234', '1'),('2', '2017-02-24', 'yimon', '2'),('3', '2017-02-23', 'yimon', '3');
 /*!40000 ALTER TABLE `order` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -75,8 +76,12 @@ CREATE TABLE `orderdetail` (
 
 LOCK TABLES `orderdetail` WRITE;
 /*!40000 ALTER TABLE `orderdetail` DISABLE KEYS */;
+INSERT INTO `sa45team05`.`orderdetail`  VALUES ('1', '01234-01', '2'),('1', '01236MNHL', '4'),('2', 'CB03VW', '2'),('3', 'MN0234B-SIL', '2'),('3', '2345HB-SIL', '2'),('3', 'CB03VW', '2');
 /*!40000 ALTER TABLE `orderdetail` ENABLE KEYS */;
 UNLOCK TABLES;
+
+
+
 
 --
 -- Table structure for table `product`
@@ -277,9 +282,9 @@ CREATE TABLE `user` (
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` VALUES ('kk234','Kiruthika','$2a$10$g4RZLzfZcxDs69VR8wm5/.Xuzc2o1koQllF5zY.tba3l2CMwH4Z4W','ROLE_MECHANIC','Valid'),
-('momo','Momo','$2a$10$g4RZLzfZcxDs69VR8wm5/.Xuzc2o1koQllF5zY.tba3l2CMwH4Z4W','ROLE_MECHANIC','Valid'),
-('runze','Runze','$2a$10$g4RZLzfZcxDs69VR8wm5/.Xuzc2o1koQllF5zY.tba3l2CMwH4Z4W','ROLE_MECHANIC','Valid'),
-('sunming','Sun Ming','$2a$10$g4RZLzfZcxDs69VR8wm5/.Xuzc2o1koQllF5zY.tba3l2CMwH4Z4W','ROLE_ADMIN','Valid'),
+('momozzz','Momo','$2a$10$g4RZLzfZcxDs69VR8wm5/.Xuzc2o1koQllF5zY.tba3l2CMwH4Z4W','ROLE_ADMIN','Valid'),
+('runzz23','Runze','$2a$10$g4RZLzfZcxDs69VR8wm5/.Xuzc2o1koQllF5zY.tba3l2CMwH4Z4W','ROLE_MECHANIC','Valid'),
+('sunm23','Sun Ming','$2a$10$g4RZLzfZcxDs69VR8wm5/.Xuzc2o1koQllF5zY.tba3l2CMwH4Z4W','ROLE_ADMIN','Valid'),
 ('yimon','Yimon Soe','$2a$10$g4RZLzfZcxDs69VR8wm5/.Xuzc2o1koQllF5zY.tba3l2CMwH4Z4W','ROLE_ADMIN','Valid');
 
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;

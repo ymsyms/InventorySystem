@@ -1,6 +1,6 @@
 package sg.edu.iss.inventory.repository;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -15,5 +15,6 @@ public interface OrderRepository extends JpaRepository<Order,Integer>
 	Order findOrderByOrderId(@Param("orderId") int orderId);
 	
 	@Query("SELECT o FROM Order o where o.supplier = :supplierId")
-	ArrayList<Order> findOrderBySupplierId(@Param("supplierId") Supplier supplierId);
+	List<Order> findOrderBySupplierId(@Param("supplierId") Supplier supplierId);
+	
 }

@@ -1,6 +1,7 @@
 package sg.edu.iss.inventory.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import sg.edu.iss.inventory.model.Order;
 import sg.edu.iss.inventory.model.OrderDetail;
@@ -14,11 +15,11 @@ public interface ReportService {
 	Supplier findSupplierbySupplierId(int supplierId);
 
 	// to retrieve order
-	ArrayList<Order> findOrderBySupplierId(Supplier supplierId);
+	List<Order> findOrderBySupplierId(Supplier supplierId);
 
 	//Ord.Qty
 	// to retrieve order detail
-	OrderDetail findOrderDetailByOrderId(int orderId);
+	ArrayList<OrderDetail> findOrderDetailByOrderId(int orderId);
 
 	//PartNo,UnitPrice,Min.Ord.Qty
 	// to retrieve product price by supplier ID

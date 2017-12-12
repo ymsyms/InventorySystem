@@ -1,6 +1,7 @@
 package sg.edu.iss.inventory.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -20,6 +21,7 @@ import sg.edu.iss.inventory.repository.SupplierRepository;
 
 @Service
 public class ReportServiceImpl implements ReportService {
+
 
 	@Resource
 	SupplierRepository SupplierRepository;
@@ -42,7 +44,7 @@ public class ReportServiceImpl implements ReportService {
 	// to retrieve order
 	@Override
 	@Transactional
-	public ArrayList<Order> findOrderBySupplierId(Supplier supplierId) {
+	public List<Order> findOrderBySupplierId(Supplier supplierId) {
 		
 		return OrderRepository.findOrderBySupplierId(supplierId);
 	}
@@ -51,7 +53,7 @@ public class ReportServiceImpl implements ReportService {
 	// to retrieve order detail
 	@Override
 	@Transactional
-	public OrderDetail findOrderDetailByOrderId(int orderId) {
+	public ArrayList<OrderDetail> findOrderDetailByOrderId(int orderId) {
 		return OrderDetailRepository.findOrderDetailByOrderId(orderId);
 	}
 
