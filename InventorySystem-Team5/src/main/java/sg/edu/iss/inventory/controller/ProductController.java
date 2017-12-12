@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import sg.edu.iss.inventory.model.Product;
+import sg.edu.iss.inventory.model.User;
 import sg.edu.iss.inventory.service.ProductService;
 import sg.edu.iss.inventory.service.UserLoginService;
 import sg.edu.iss.inventory.validator.ProductValidator;
@@ -46,8 +47,13 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView productListPage(Model model, @RequestParam(required = false) Integer page,@ModelAttribute("product") Product product) {
+	public ModelAndView productListPage(Model model, @RequestParam(required = false) Integer page,@ModelAttribute("product") Product product,HttpSession session) {
 		model.addAttribute("product",new Product());
+		
+		User user = userLoginService.getUserDetails();
+		UserSession userSession = new UserSession();
+		userSession.setUser(user);
+		session.setAttribute("USERSESSION", userSession);
 			
 		ModelAndView mav = new ModelAndView("product-list");
 		List<Product> productList = (List<Product>) productService.findAllProduct();

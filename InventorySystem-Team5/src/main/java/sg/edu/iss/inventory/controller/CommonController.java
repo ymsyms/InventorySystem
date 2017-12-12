@@ -26,7 +26,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import sg.edu.iss.inventory.model.Product;
+import sg.edu.iss.inventory.model.User;
 import sg.edu.iss.inventory.service.ProductService;
+import sg.edu.iss.inventory.service.UserLoginService;
 import sg.edu.iss.inventory.service.UserService;
 import sg.edu.iss.inventory.validator.LoginValidator;
 
@@ -39,10 +41,18 @@ public class CommonController {
 	ProductService productService;
 	@Autowired
 	private LoginValidator lValidator;
+	@Autowired
+	UserLoginService userLoginService;	
 
 	@RequestMapping(value = { "/", "/welcome**" }, method = RequestMethod.GET)
 	public ModelAndView productListPage(Model model, @RequestParam(required = false) Integer page,
-			@ModelAttribute("product") Product product) {
+			@ModelAttribute("product") Product product,HttpSession session) {
+		
+		User user = userLoginService.getUserDetails();
+		UserSession userSession = new UserSession();
+		userSession.setUser(user);
+		session.setAttribute("USERSESSION", userSession);		
+		
 		model.addAttribute("product", new Product());
 		ModelAndView mav = new ModelAndView("product-list");
 		List<Product> productList = (List<Product>) productService.findAllProduct();
@@ -91,7 +101,7 @@ public class CommonController {
 
 		HashMap<Product, Integer> usageSummary = new HashMap<Product, Integer>();
 		session.setAttribute("usageSummary", usageSummary);
-
+	
 		ModelAndView model = new ModelAndView();
 		if (error != null) {
 			model.addObject("error", getErrorMessage(request, "SPRING_SECURITY_LAST_EXCEPTION"));
@@ -134,7 +144,7 @@ public class CommonController {
 		if (!(auth instanceof AnonymousAuthenticationToken)) {
 			UserDetails userDetail = (UserDetails) auth.getPrincipal();
 			System.out.println(userDetail);
-
+			
 			model.addObject("username", userDetail.getUsername());
 
 		}

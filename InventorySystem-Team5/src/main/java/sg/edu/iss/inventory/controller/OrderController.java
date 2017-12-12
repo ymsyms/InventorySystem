@@ -1,13 +1,10 @@
 package sg.edu.iss.inventory.controller;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import javax.persistence.criteria.Order;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.hibernate.validator.internal.util.privilegedactions.GetAnnotationParameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,11 +15,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import sg.edu.iss.inventory.exception.MismatchPartNumException;
 import sg.edu.iss.inventory.model.OrderCartItem;
-import sg.edu.iss.inventory.model.Product;
 import sg.edu.iss.inventory.model.User;
 import sg.edu.iss.inventory.service.OrderService;
 import sg.edu.iss.inventory.service.UserLoginService;
-import sg.edu.iss.inventory.service.UserService;
 
 @RequestMapping(value = "/admin/order")
 @Controller
@@ -32,11 +27,7 @@ public class OrderController {
 	private OrderService oService;
 	@Autowired
 	UserLoginService userLoginService;
-
-	//
-	//
-	//
-	//
+	
 	// list
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list(HttpSession session) {
@@ -44,10 +35,6 @@ public class OrderController {
 		return new ModelAndView("order-list");
 	}
 
-	//
-	//
-	//
-	//
 	// add
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public ModelAndView addOrderItem(HttpSession session, HttpServletRequest request) {
@@ -64,10 +51,6 @@ public class OrderController {
 		return new ModelAndView("order-list");
 	}
 
-	//
-	//
-	//
-	//
 	// reset
 	@RequestMapping(value = "/reset", method = RequestMethod.POST)
 	public ModelAndView reset(HttpSession session, HttpServletRequest request) {
@@ -76,9 +59,6 @@ public class OrderController {
 		return new ModelAndView("order-list");
 	}
 
-	//
-	//
-	//
 	//
 	// submit
 	@RequestMapping(value = "/submit", method = RequestMethod.POST)
