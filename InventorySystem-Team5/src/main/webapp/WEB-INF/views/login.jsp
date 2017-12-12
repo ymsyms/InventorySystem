@@ -3,7 +3,8 @@
 
 <html>
   <h4>Sign In System</h4>
-<form:form modelAttribute="user" method="POST"
+
+<form:form commandName="user" method="POST"
 	action="${pageContext.request.contextPath}/user/login"
 	class="form-horizontal loginForm">
 	<div class="form-group">
@@ -20,9 +21,7 @@
 	</div>
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
-			<form:button name="submit" type="submit" value="s"
-				class="btn btn-default">Sign In
-				</form:button>
+			<input type="submit" value="Sign In" class="btn btn-default"/>
 		</div>
 	</div>
 </form:form>
