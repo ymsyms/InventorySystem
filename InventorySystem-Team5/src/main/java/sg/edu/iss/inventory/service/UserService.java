@@ -9,4 +9,5 @@ public interface UserService {
 	ArrayList<User> findAllUser();
 
 	User authenticate(String uname, String pwd);
+	
 }

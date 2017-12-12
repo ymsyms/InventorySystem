@@ -10,6 +10,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,6 +33,8 @@ public class TransactionServiceImpl implements TransactionService {
 	 TransactionDetailRepository transDetailRepository;
 	@Resource
 	ProductRepository productRepository;
+	@Autowired
+	UserLoginService userLoginService;	
 
 	@Override
 	@Transactional
@@ -40,8 +44,8 @@ public class TransactionServiceImpl implements TransactionService {
 		String customerName = request.getParameter("custName");
 		
 		//Actual use block start ==========================
-		UserSession us = (UserSession) session.getAttribute("USERSESSION");
-		User user = us.getUser();
+		
+		User user = userLoginService.getUserDetails();
 		Transaction newTrans = new Transaction(transactionDate, user, customerName);
 		//Actual use block end ============================
 		
