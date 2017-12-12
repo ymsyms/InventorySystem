@@ -1,4 +1,5 @@
 
+
 DROP SCHEMA IF EXISTS `sa45team05` ;
 
 CREATE DATABASE  IF NOT EXISTS `sa45team05` /*!40100 DEFAULT CHARACTER SET utf8 */;
@@ -86,14 +87,14 @@ DROP TABLE IF EXISTS `product`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `product` (
   `partNo` varchar(20) NOT NULL,
-  `carDealer` varchar(45) DEFAULT NULL,
-  `partDescription` varchar(80) DEFAULT NULL,
+  `carDealer` varchar(45) NOT NULL,
+  `partDescription` varchar(80) NOT NULL,
   `availableQty` int(11) NOT NULL,
-  `color` varchar(20) DEFAULT NULL,
+  `color` varchar(20) NOT NULL,
   `dimension` varchar(30) DEFAULT NULL,
   `reorderLevel` int(11) NOT NULL,
   `shelfLocation` varchar(30) DEFAULT NULL,
-  `productStatus` varchar(15) DEFAULT NULL,
+  `productStatus` varchar(15) NOT NULL,
   PRIMARY KEY (`partNo`),
   UNIQUE KEY `PartNo_UNIQUE` (`partNo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -105,7 +106,7 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES ('01234-01','Toyota','fender',15,'black','23 (h) x 24 (w)',10,'B002-023','Valid'),('01234-02','Toyota','fender',12,'blue','23 (h) x 24 (w)',10,'B002-025','Valid'),('01234-03','Toyota','fender',10,'yellow','23 (h) x 24 (w) ',10,'B002-024','Valid'),('01236MNHL','Mini Cooper','headlight',9,'clear','21 (h) x 16 (w)',10,'B004-123','Valid'),('02367VW-B03','Volkswagon','fender',16,'blue-green','24 (h) x 24 (w)',10,'B002-034','Valid'),('21566VW-B01','Volkswagon','fender',15,'blue','25 (h) x 26 (w)',10,'B003-025','Valid'),('2345HB-BLK','Hyundai',NULL,0,NULL,NULL,0,NULL,'Valid'),('2345HB-SIL','Hyundai','hub cap',23,'silver','4\" (d)',15,'C004-022','Valid'),('2458HB-SIL','Hyundai','hub cap ',9,'silver','6\" (d)',10,'C005-025','Valid'),('2460HC-SIL','Hyundai','hub cap',6,'silver','10\" (d)',10,'C006-034','Valid'),('CB03VW','Volkswagon','bumper',12,'silver','25 (h) x 26 (w)',10,'D003-022','Valid'),('CD022VWK','Volkswagon','headlight',5,'clear','21 (h) x 23 (w)',8,'B001-120','Valid'),('MN0234B-SIL','Mini Cooper','bumper',10,'silver','25 (h) x 26 (w)',8,'B003-120','Valid');
+INSERT INTO `product` VALUES ('01234-01','Toyota','fender',15,'black','23 (h) x 24 (w)',10,'B002-023','Valid'),('01234-02','Toyota','fender',12,'blue','23 (h) x 24 (w)',10,'B002-025','Valid'),('01234-03','Toyota','fender',10,'yellow','23 (h) x 24 (w) ',10,'B002-024','Valid'),('01236MNHL','Mini Cooper','headlight',9,'clear','21 (h) x 16 (w)',10,'B004-123','Valid'),('02367VW-B03','Volkswagon','fender',16,'blue-green','24 (h) x 24 (w)',10,'B002-034','Valid'),('21566VW-B01','Volkswagon','fender',15,'blue','25 (h) x 26 (w)',10,'B003-025','Valid'),('2345HB-BLK','Hyundai','fender',0,'blue',NULL,0,NULL,'Valid'),('2345HB-SIL','Hyundai','hub cap',23,'silver','4\" (d)',15,'C004-022','Valid'),('2458HB-SIL','Hyundai','hub cap ',9,'silver','6\" (d)',10,'C005-025','Valid'),('2460HC-SIL','Hyundai','hub cap',6,'silver','10\" (d)',10,'C006-034','Valid'),('CB03VW','Volkswagon','bumper',12,'silver','25 (h) x 26 (w)',10,'D003-022','Valid'),('CD022VWK','Volkswagon','headlight',5,'clear','21 (h) x 23 (w)',8,'B001-120','Valid'),('MN0234B-SIL','Mini Cooper','bumper',10,'silver','25 (h) x 26 (w)',8,'B003-120','Valid');
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -177,7 +178,8 @@ DROP TABLE IF EXISTS `supplier`;
 CREATE TABLE `supplier` (
   `supplierId` int(11) NOT NULL AUTO_INCREMENT,
   `supplierName` varchar(50) NOT NULL,
-  `supplierContactNo` varchar(20) DEFAULT NULL,
+  `supplierContactNo` varchar(20) DEFAULT NULL,  
+  `supplierStatus` varchar(15) NOT NULL,
   PRIMARY KEY (`supplierId`),
   UNIQUE KEY `supplierId_UNIQUE` (`supplierId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
@@ -189,7 +191,7 @@ CREATE TABLE `supplier` (
 
 LOCK TABLES `supplier` WRITE;
 /*!40000 ALTER TABLE `supplier` DISABLE KEYS */;
-INSERT INTO `supplier` VALUES (1,'L.Mix Industries','92341524'),(2,'CL Autos','22913701'),(3,'Demi.L Spare Parts','64823321'),(4,'David G. Service & N.M Auto Parts','24331161'),(5,'Karmin Autos Accessories','45829352'),(6,'Charli XCX Supplier Co.','34455352'),(7,'R.Paul Autos Industries','31981417');
+INSERT INTO `supplier` VALUES (1,'L.Mix Industries','92341524','Valid'),(2,'CL Autos','22913701','Valid'),(3,'Demi.L Spare Parts','64823321','Valid'),(4,'David G. Service & N.M Auto Parts','24331161','Valid'),(5,'Karmin Autos Accessories','45829352','Valid'),(6,'Charli XCX Supplier Co.','34455352','Valid'),(7,'R.Paul Autos Industries','31981417','Valid');
 /*!40000 ALTER TABLE `supplier` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -274,7 +276,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('kk234','Kiruthika','234kk','mechanic','Valid'),('momozzz','Momo','momo222','administrator','Valid'),('runzz23','Runze','pa55w0rd','mechanic','Valid'),('sunm23','Sun Ming','sming23','mechanic','Valid'),('yimon','Yimon Soe','yimon','administrator','Valid');
+INSERT INTO `user` VALUES ('kk234','Kiruthika','234kk','mechanic','Valid'),('momozzz','Momo','momo222','administrator','Valid'),('runzz23','Runze','pa55w0rd','mechanic','Valid'),('sunm23','Sun Ming','sming23','mechanic','Valid'),('yimonz','Yimon Soe','password','administrator','Valid');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
