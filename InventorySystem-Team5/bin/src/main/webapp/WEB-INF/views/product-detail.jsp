@@ -11,7 +11,7 @@
 <script
 	src="/resources/demos/external/jquery-mousewheel/jquery.mousewheel.js"></script>
 <script>
-  $(function() {
+	$(function() {
 		$(".spinner").spinner({
 			min : 0
 		});
@@ -21,8 +21,8 @@
 <h3>Product Detail page</h3>
 <form:form method="POST" modelAttribute="product"
 	action="${pageContext.request.contextPath}/product/detail/${product.partNo}.html">
-
-	<table>
+<a href="${pageContext.request.contextPath}/product/list">Back To Product List</a>
+	<table class="table table-striped">
 		<tbody>
 			<tr>
 				<td><spring:message code="product.partNo" /></td>
@@ -64,23 +64,19 @@
 	</table>
 
 	<table>
-		<tbody>
-			<tr>			
-
-				<form:form modelAttribute="product" method="POST"
-					action="${pageContext.request.contextPath}/product/use">
-					<td><input type="submit" value="Use" class="blcass" /></td>
-					<td></td>
-					<td></td>
-				</form:form>
-				
-				<form:form modelAttribute="product" method="POST"
+		<tbody >
+			<tr>
+			    
+				<td><form:form modelAttribute="product" method="POST"
+						action="${pageContext.request.contextPath}/product/use">						
+						<td><input type="submit" value="Use This Product" class="blcass" /></td>
+					</form:form></td>
+					<td>&nbsp&nbsp&nbsp&nbsp&nbsp</td>
+				<td><form:form modelAttribute="product" method="POST"
 					action="${pageContext.request.contextPath}/product/use">
 					<td><input type="submit" value="Transaction History"
-					class="blcass" /></td>
-					<td></td>
-					<td></td>
-				</form:form>				
+						class="blcass" /></td>
+				</form:form></td>
 			</tr>
 		</tbody>
 	</table>
