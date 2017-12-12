@@ -9,6 +9,7 @@ import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.core.env.Environment;
@@ -36,6 +37,7 @@ import org.springframework.web.servlet.view.JstlView;
 @PropertySource({ "classpath:application.properties",
 		"classpath:/i18n/messages.properties" })
 @EnableJpaRepositories("sg.edu.iss.inventory.repository")
+@Import({ SecurityConfig.class })
 public class WebAppConfig extends WebMvcConfigurerAdapter {
 
 	private static final String PROPERTY_NAME_DATABASE_DRIVER = "db.driver";

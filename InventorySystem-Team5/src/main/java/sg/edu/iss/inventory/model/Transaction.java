@@ -44,6 +44,14 @@ public class Transaction {
 		this.customerName = customerName;
 	}
 
+
+	public Transaction(Date transactionDate, User usertran, String customerName) {
+		super();
+		this.transactionDate = transactionDate;
+		this.usertran = usertran;
+		this.customerName = customerName;
+	}
+	
 	public int getTransactionId() {
 		return transactionId;
 	}

@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.procedure.internal.Util.ResultClassesResolutionContext;
+
 @Entity
 @Table(name="user")
 public class User {
@@ -90,6 +92,16 @@ public class User {
 
 	public void setOrders(List<Order> orders) {
 		this.orders.addAll(orders);
+	}
+	
+	public boolean isEnabled() {
+		if(this.userStatus.equals("Valid"))
+		{
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 	@Override

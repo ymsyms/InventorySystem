@@ -11,7 +11,7 @@ import sg.edu.iss.inventory.model.User;
 public class UserSession {
 
 	private String sessionId = null;
-	private User user = null;
+	private User user = null;	
 	
 	public UserSession() {
 		super();
