@@ -24,17 +24,20 @@ public class Supplier {
 	private String supplierName;
 	@Column(name = "supplierContactNo")
 	private String supplierContactNo;
+	@Column(name = "supplierStatus")
+	private String supplierStatus;
 	@OneToMany(mappedBy="supplier")
 	private List<Order> suppliers;
 	public Supplier() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Supplier(int supplierId, String supplierName, String supplierContactNo, List<Order> suppliers) {
+	public Supplier(int supplierId, String supplierName, String supplierContactNo, String supplierStatus, List<Order> suppliers) {
 		super();
 		this.supplierId = supplierId;
 		this.supplierName = supplierName;
 		this.supplierContactNo = supplierContactNo;
+		this.supplierStatus = supplierStatus;
 		this.suppliers.addAll(suppliers);
 	}
 	public int getSupplierId() {
@@ -55,12 +58,20 @@ public class Supplier {
 	public void setSupplierContactNo(String supplierContactNo) {
 		this.supplierContactNo = supplierContactNo;
 	}
+	public String getsupplierStatus() {
+		return supplierStatus;
+	}
+	public void setSupplierStatus(String supplierStatus) {
+		this.supplierStatus = supplierStatus;
+	}
 	public List<Order> getSuppliers() {
 		return suppliers;
 	}
 	public void setSuppliers(List<Order> suppliers) {
 		this.suppliers.addAll(suppliers);
 	}
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
