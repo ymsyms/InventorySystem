@@ -36,10 +36,11 @@
 		
 		<c:if test="${fn:length(pSupplierList) gt 0}">
 		
-		<h5 align="center"><u><b>Inventory Reorder Report for Supplier </b></u></h5>
+		<h5 align="center"><u><b>Inventory Reorder Report for Supplier S${supplierId} </b></u></h5>
 		<br><br>
 			<div>
-			<div class="row" >
+			<div class="row divReportHead" >
+			<br>
 					<div class="col-sm-2">Part Number</div>
 					<div class="col-sm-1">Unit Price</div>
 					<div class="col-sm-2">Available Quantity</div>
@@ -47,55 +48,62 @@
 					<div class="col-sm-2">Minimum Order Quantity</div>
 					<div class="col-sm-2">Order Quantity</div>
 					<div class="col-sm-1">Price</div>
+					<br>&nbsp;&nbsp;
 				</div>		
-				<div class="row" >
+				<div class="row divReportBody" >
 					<div class="col-sm-2" >
 					<c:forEach var="report" items="${orderDetailIdList}">
-						${report.partNo}<br>
+						<br>${report.partNo}<br>
 					</c:forEach>
 					</div>
 					<div class="col-sm-1">
 					<c:forEach var="report" items="${pSupplierList}">
-						${report.unitPrice}<br>
+						<br> $ ${report.unitPrice}<br>
 					</c:forEach>
 					</div>
 					<div class="col-sm-2">
 					<c:forEach var="report" items="${productList}">
-						${report.availableQty}<br>
+						<br>${report.availableQty}<br>
 					</c:forEach>
 					</div>
 					<div class="col-sm-2">
 					<c:forEach var="report" items="${productList}">
-						${report.reorderLevel}<br>
+						<br>${report.reorderLevel}<br>
 					</c:forEach>
 					</div>
 					<div class="col-sm-2">
 					<c:forEach var="report" items="${pSupplierList}">
-						${report.minimumReorderQty}<br>
+						<br>${report.minimumReorderQty}<br>
 					</c:forEach>
 					</div>
 					<div class="col-sm-2">
 					<c:forEach var="report" items="${orderDetailList}">
-						${report.orderQty}<br>
+						<br>${report.orderQty}<br>
 					</c:forEach>
 					</div>
 					<div class="col-sm-1">
 					<c:forEach var="report" items="${price}">
-						${report}<br>
+						<br> $ ${report}<br>
 					</c:forEach>
 					</div>
+					<br>&nbsp;&nbsp;
 				</div>	
-				<div class="row">
+				<div class="row divReportHead">
 				<div class="col-sm-2"></div>
+				<br>
 					<div class="col-sm-1"></div>
 					<div class="col-sm-2"></div>
 					<div class="col-sm-2"></div>
 					<div class="col-sm-2"></div>
+					<div class="col-sm-2"></div>
 					<div class="col-sm-2">Total</div>
-					<div class="col-sm-1">
+					<div class="col-sm-1">$
 					${total}</div>
-				</div>			
+					<br>&nbsp;&nbsp;
+				</div>	
 			</div>
+			<br>
+			<h5 align="center"><b>End of Report </b>	</h5>
 		</c:if>
 	</form:form>
 </body>
