@@ -16,12 +16,16 @@ public interface ProductService {
 
 	void removeProduct(Product product);
 
-	ArrayList<Product> searchProduct(Product product);
-	
 	ArrayList<Product> searchAllCarDealer();
-	
-	ArrayList<Product> searchAllPartDescription();	
+
+	ArrayList<Product> searchAllPartDescription();
 
 	ArrayList<Product> searchAllColor();
+
+	ArrayList<Product> findByPartDescription(String partDescription);
+
+	ArrayList<Product> findByCarDealer(String carDealer);
+
+	ArrayList<Product> searchProductByPartNo(String partNo);
 
 }

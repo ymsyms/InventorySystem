@@ -3,6 +3,7 @@ package sg.edu.iss.inventory.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -72,21 +73,44 @@ public class ProductController {
 		return mav;
 	}	
 	
-	
-	@RequestMapping(value = "/search", method = RequestMethod.POST)
-	public ModelAndView searchProduct(@ModelAttribute Product product, HttpSession session, BindingResult result) {
+
+	@RequestMapping(value = "/list", method = RequestMethod.POST)
+	public ModelAndView searchProduct(@ModelAttribute Product product, HttpSession session, HttpServletRequest request,
+			BindingResult result, @RequestParam(required = false) Integer page) {
 		ModelAndView mav = new ModelAndView("product-list");
-		
-		ArrayList<Product> productList = productService.searchProduct(product);		
-			if(!productList.isEmpty())
-			{
-				mav.addObject("productList", productList);
+		ArrayList<Product> productList = new ArrayList<Product>();
+		String option = (String) request.getParameter("selectoption");
+		String key = (String) request.getParameter("searchVar");
+		String partDescriptions = "partDescription";
+		String partNos = "partNo";
+		if (option.equals(partNos)) {
+			productList = productService.searchProductByPartNo(key);
+		} else if (option.equals(partDescriptions)) {
+
+			productList = productService.findByPartDescription(key);
+		} else {
+			productList = productService.findByCarDealer(key);
+		}
+
+		if (!productList.isEmpty()) {
+			PagedListHolder<Product> pagedListHolder = new PagedListHolder<>(productList);
+			pagedListHolder.setPageSize(7);
+			mav.addObject("maxPages", pagedListHolder.getPageCount());
+			if (page == null || page < 1 || page > pagedListHolder.getPageCount())
+				page = 1;
+
+			mav.addObject("page", page);
+			if (page == null || page < 1 || page > pagedListHolder.getPageCount()) {
+				pagedListHolder.setPage(0);
+				mav.addObject("productList", pagedListHolder.getPageList());
+			} else if (page <= pagedListHolder.getPageCount()) {
+				pagedListHolder.setPage(page - 1);
+				mav.addObject("productList", pagedListHolder.getPageList());
 			}
-			else
-			{
-				//to add error message
-				mav = new ModelAndView("redirect:/product/list");
-			}				
+		} else {
+			// to add error message
+			mav = new ModelAndView("redirect:/product/list");
+		}
 		return mav;
 	}
 	

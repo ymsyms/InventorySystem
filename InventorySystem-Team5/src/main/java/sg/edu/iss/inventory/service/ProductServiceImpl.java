@@ -53,19 +53,19 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	@Transactional
-	public ArrayList<Product> searchProduct(Product product) {
-		ArrayList<Product> l = new ArrayList<Product>();
-		l = productRepository.serachProductByPartNo(product.getPartNo());
-//		if (product.getPartNo() != null) {
-//			l = productRepository.serachProductByPartNo(product.getPartNo());
-//		} else if (product.getCarDealer() != null && product.getColor() != null) {
-//			l = productRepository.findProductByDealerNColor(product.getColor(), product.getCarDealer());
-//		} else {
-//			l = productRepository.findProductByCarDealer(product.getCarDealer());
-//		}
-		return l;		
+	public ArrayList<Product> findByPartDescription(String partDescription){
+		return productRepository.findProductByPartDescription(partDescription);
 	}
-	
+	@Override
+	@Transactional
+	public ArrayList<Product> findByCarDealer(String carDealer){
+		return productRepository.findProductByCarDealer(carDealer);
+	}
+	@Override
+	@Transactional
+	public ArrayList<Product> searchProductByPartNo(String partNo){
+		return productRepository.serachProductByPartNo(partNo);
+	}
 	@Override
 	@Transactional
 	public ArrayList<Product> searchAllCarDealer()

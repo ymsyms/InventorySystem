@@ -11,17 +11,18 @@
 <script
 	src="/resources/demos/external/jquery-mousewheel/jquery.mousewheel.js"></script>
 <script>
-  $(function() {
+	$(function() {
 		$(".spinner").spinner({
 			min : 0
 		});
 	});
 </script>
 
-<h3>New Employee page</h3>
+<h3>New Product page</h3>
 <form:form method="POST" modelAttribute="product"
 	action="${pageContext.request.contextPath}/product/create.html">
-	<table>
+	<a href="${pageContext.request.contextPath}/product/list">Back To Product List</a>
+	<table class="table table-striped">
 		<tbody>
 			<tr>
 				<td><spring:message code="product.partNo" /></td>
@@ -61,14 +62,12 @@
 				<td><spring:message code="product.shelfLocation" /></td>
 				<td><form:input path="shelfLocation" /></td>
 			</tr>
-			<tr>				<td><input type="reset" value="Reset" size="40" /></td>
-				<td></td>
-				<td></td>
-
-				<td><input type="submit" value="Add" size="40" /></td>
-				<td></td>
-				<td></td>
-			</tr>
+	</table>
+	<table >
+		<tr>
+			<td><input type="reset" value="Reset" size="40" /></td>			
+			<td><input type="submit" value="Add" size="40" /></td>			
+		</tr>
 		</tbody>
 	</table>
 </form:form>
