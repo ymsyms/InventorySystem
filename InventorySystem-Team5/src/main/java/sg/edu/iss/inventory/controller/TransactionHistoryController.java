@@ -46,7 +46,7 @@ public class TransactionHistoryController {
 		binder.addValidators(thValidator);
 	}
 
-	@RequestMapping(value = "/viewTranHistory/{partNo}", method = RequestMethod.POST)
+	@RequestMapping(value = "/viewTranHistory/{partNo}", method = RequestMethod.GET)
 	public ModelAndView openTranHistory(@PathVariable String partNo) {
 		Product product = pService.findProducts(partNo);
 		ModelAndView mav = new ModelAndView("transaction-history");

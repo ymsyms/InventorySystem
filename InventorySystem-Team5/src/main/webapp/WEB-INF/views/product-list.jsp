@@ -55,6 +55,9 @@
 							href="${pageContext.request.contextPath}/product/detail/${product.partNo}.html"><spring:message
 									code="caption.detail" /></a></td>
 						<td align="center"><a
+							href="${pageContext.request.contextPath}/transaction/viewTranHistory/${product.partNo}.html">
+								Transaction History</a></td>
+						<td align="center"><a
 							href="${pageContext.request.contextPath}/product/edit/${product.partNo}.html"><spring:message
 									code="caption.edit" /></a></td>
 						<td><a

@@ -67,14 +67,10 @@
 						value="${sessionScope.edate}" /></td>
 					<span style="color: red;">${ dateErrorMessage }</span>
 				</tr>
-
-
-				<tr>
-					<td><input type="submit" name="searchbtn" value="Search" class="button button2"  /></td>
-				</tr>
-
 			</tbody>
 		</table>
+		
+		<input type="submit" name="searchbtn" value="Search" class="button button2"  />
 
 		<p>${ statusMessage }</p>
 		<c:choose>

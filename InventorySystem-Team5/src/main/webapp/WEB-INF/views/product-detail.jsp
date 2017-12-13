@@ -22,9 +22,7 @@
 	function OnSubmitForm() {
 		if (document.pressed == 'Use this product') {
 			document.productDetail.action = "/inventory/product/use?${_csrf.parameterName}=${_csrf.token}";
-		} else if (document.pressed == 'Transaction History') {
-			document.productDetail.action = "/inventory/transaction/viewTranHistory?${_csrf.parameterName}=${_csrf.token}";
-		}
+		} 
 		return true;
 	}
 </script>
@@ -82,8 +80,7 @@
 	</table>
 	
 	<input type="submit" onclick="document.pressed=this.value" value="Use this product" class="button button2"/>
-	<span>&nbsp&nbsp&nbsp&nbsp&nbsp</span>
-	<input type="submit" onclick="document.pressed=this.value" value="Transaction History" class="button button2"/>
+	<span>&nbsp&nbsp&nbsp&nbsp&nbsp</span>	
 	<span style="color:red;"> ${qtyErrorMessage } </span>
 </form>
 	
