@@ -9,5 +9,6 @@
 <body>
 	<h3>Success</h3>
 	<p>The usage record has been successfully saved.</p>
+	<a href="${pageContext.request.contextPath}/product/list">Back To Product List</a>
 </body>
 </html>

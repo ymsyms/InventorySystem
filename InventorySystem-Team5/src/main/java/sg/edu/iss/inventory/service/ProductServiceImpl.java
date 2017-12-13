@@ -56,39 +56,65 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	@Override
-	public void useProduct(HttpServletRequest request, HttpSession session) {
-		int usageQuantity = Integer.parseInt(request.getParameter("newQuantity"));
-		int availableQuantity = Integer.parseInt(request.getParameter("availableQuantity"));
+	public boolean useProduct(HttpServletRequest request, HttpSession session) {
 		
-		if(usageQuantity <= availableQuantity) {
-			HashMap<Product, Integer> usageSummary = (HashMap) session.getAttribute("usageSummary");
-			String partNo = request.getParameter("partNo");
-			Product toBeAdded = productRepository.findProductByPartNo(partNo);
-
-			boolean containsProduct = false;    //Checks if the product is already in the usage summary hashmap
-			for (Map.Entry<Product, Integer> pair  : usageSummary.entrySet()) {
-				if(toBeAdded.equals(pair.getKey())) {     //Execute the inner block after finding a matching Product
-					containsProduct = true;
-//					usageSummary.put(pair.getKey(), usageQuantity);    //alt way of using
-					
-					int newQuantity = pair.getValue() + usageQuantity;     //Allows adding onto an existing usage quantity
-					
-					if(newQuantity <= availableQuantity) {  //If final usage quantity is still within available quantity, the addition will be allowed
-						usageSummary.put(pair.getKey(), pair.getValue() + usageQuantity);
-					}
-					else {
-						request.setAttribute("qtyErrorMessage", "You cannot add this quantity as it will exceed the available quantity. (Current usage quantity: " + pair.getValue() + ")");
-					}
-				}
+		int usageQuantity = 0;
+		int availableQuantity = 0;
+		String strUsageQuantity = request.getParameter("newQuantity");
+		String strAvailableQuantity = request.getParameter("availableQuantity");
+		
+		//Checking whether user left the quantity field empty when submitting
+		if(strUsageQuantity != null && strAvailableQuantity != null) {
+			if(UtilitiesService.isInt(strUsageQuantity) && UtilitiesService.isInt(strAvailableQuantity)) {
+				usageQuantity = Integer.parseInt(request.getParameter("newQuantity"));
+				availableQuantity = Integer.parseInt(request.getParameter("availableQuantity"));
 			}
-			
-			if(containsProduct == false) {     //Adding the product if the hashmap doesn't contain it yet
-				usageSummary.put(toBeAdded, usageQuantity);
+			else {
+				request.setAttribute("qtyErrorMessage", "Only integers allowed in quantity field");
+				return false;
 			}
 		}
 		else {
-			request.setAttribute("qtyErrorMessage", "You cannot set a usage quantity higher than the available quantity");
+			request.setAttribute("qtyErrorMessage", "Quantity cannot be left empty");
+			return false;
 		}
+		
+		if (usageQuantity <= availableQuantity) {
+			HashMap<Product, Integer> usageSummary = (HashMap) session.getAttribute("usageSummary");
+			String partNo = request.getParameter("partNo");
+			Product toBeAdded = productRepository.findProductByPartNo(partNo);
+			int newQuantity = 0;
+
+			boolean containsProduct = false; // Checks if the product is already in the usage summary hashmap
+			for (Map.Entry<Product, Integer> pair : usageSummary.entrySet()) {
+				if (toBeAdded.equals(pair.getKey())) { // Execute the inner block after finding a matching Product
+					containsProduct = true;
+
+					newQuantity = pair.getValue() + usageQuantity; // Allows adding onto an existing usage
+																		// quantity
+
+					if (newQuantity <= availableQuantity) { // If final usage quantity is still within available quantity, the addition will be allowed
+						usageSummary.put(pair.getKey(), pair.getValue() + usageQuantity);
+						request.setAttribute("addingStatusMessage", "Usage of " + partNo + " has been added " + "(" + usageQuantity + " added. Total: " + newQuantity + ")");
+						return true;
+					}
+					else {
+						request.setAttribute("qtyErrorMessage", "You cannot add this quantity as it will exceed the available quantity. (Current usage quantity: " + pair.getValue() + ")");
+						return false;
+					}
+				}
+			}
+
+			if (containsProduct == false) { // Adding the product if the hashmap doesn't contain it yet
+				usageSummary.put(toBeAdded, usageQuantity);
+				request.setAttribute("addingStatusMessage", "Usage of " + partNo + " has been added " + "(" + usageQuantity + " added. Total: " + usageQuantity + ")");
+				return true;
+			}
+		} else {
+			request.setAttribute("qtyErrorMessage", "You cannot set a usage quantity higher than the available quantity");
+			return false;
+		}
+		return false;
 	}
 
 	@Override

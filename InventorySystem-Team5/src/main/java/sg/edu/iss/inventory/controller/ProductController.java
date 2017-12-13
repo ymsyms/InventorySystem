@@ -213,10 +213,23 @@ public class ProductController {
 	
 	@RequestMapping(value = "/use", method = RequestMethod.POST)
 	public ModelAndView useProduct(HttpServletRequest request, HttpSession session) {
-		ModelAndView mav = new ModelAndView("product-list");
-		productService.useProduct(request, session);
+		ModelAndView mav = null;
+		boolean success = productService.useProduct(request, session);
 		
-		mav = new ModelAndView("redirect:/product/list");
+		if(success == false) {
+			String partNo = request.getParameter("partNo");
+			if(partNo != null) {
+				Product p = productService.findProducts(partNo);
+				mav = new ModelAndView("product-detail");
+				mav.addObject("product", p);
+			}
+		}
+		else {
+			mav = new ModelAndView("item-added");
+		}
+		
+//		mav = new ModelAndView("redirect:/product/list");
 		return mav;
 	}	
+	
 }

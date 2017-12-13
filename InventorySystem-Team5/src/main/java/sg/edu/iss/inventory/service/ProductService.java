@@ -31,6 +31,6 @@ public interface ProductService {
 
 	ArrayList<Product> searchProductByPartNo(String partNo);
 
-	void useProduct(HttpServletRequest request, HttpSession session);
+	boolean useProduct(HttpServletRequest request, HttpSession session);
 
 }
