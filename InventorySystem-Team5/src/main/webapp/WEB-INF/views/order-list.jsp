@@ -1,4 +1,3 @@
-
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
@@ -7,6 +6,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
+
+<!-- Head -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
@@ -14,6 +15,9 @@
 .fakeLabel {
 	background: rgba(0, 0, 0, 0);
 	border: none;
+}
+.textboxcolour{
+	background: rgb(216, 242, 255);
 }
 </style>
 
@@ -30,16 +34,24 @@
 	}
 </script>
 
-<!-- Latest compiled and minified CSS -->
+<!-- Bootstrap -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<!-- jQuery library -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!-- Latest compiled JavaScript -->
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
+
+
+
+
+
+
+
+
+
+
 
 <!-- body -->
 <body>
@@ -48,10 +60,14 @@
 	<form id="form1" name="orderSelection" method="post"
 		onsubmit="return OnSubmitForm()">
 
-		<h3>New Order Page</h3>
-		 <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+		<h3>Create Order</h3>
+		<h5>Below are the items which need to be reordered</h5>
+		<input type="hidden" name="${_csrf.parameterName}"
+			value="${_csrf.token}" />
 		<!-- table -->
-		<table class="table-condensed" width="70%">
+		<table
+			class="table table-striped table-bordered table-hover table-condensed table"
+			width="70%">
 			<colgroup>
 				<col span="1" style="width: 10%;">
 				<col span="1" style="width: 50%;">
@@ -65,12 +81,12 @@
 					<th style="">PartNo</th>
 					<th>Supplier / UnitPrice / MinOrderQty</th>
 					<th>CurrentQty</th>
-					<th>OrderQty</th>
+					<th colspan="2">OrderQty</th>
 				</tr>
 			</thead>
 
 			<tbody>
-				<c:forEach var="orderItem" items="${ORDERLIST}" varStatus="theCount">
+				<c:forEach var="orderItem" items="${OLIST}" varStatus="theCount">
 					<tr class="listRecord">
 
 						<!-- column: partNo -->
@@ -79,7 +95,8 @@
 							value="${orderItem.product.partNo}" readonly="readonly"></td>
 
 						<!-- column: productSupplier -->
-						<td><select style="width:100%" name="productSupplier${theCount.index}">
+						<td><select style="width: 100%" class="textboxcolour"
+							name="productSupplier${theCount.index}">
 								<c:forEach var="p" items="${orderItem.prodSupList}"
 									varStatus="mapIndex">
 									<option value="${p.id.supplierId}"
@@ -95,14 +112,14 @@
 							value="${orderItem.product.availableQty}" readonly="readonly"></td>
 
 						<!-- column: orderQty -->
-						<td align="left"><input type="text"
+						<td align="left"><input type="text" class="textboxcolour"
 							id="orderQty${theCount.index}" name="orderQty${theCount.index}"
 							value="${orderItem.quantity}"></td>
 
 						<!-- column: Delete -->
 						<td><a
 							href="${pageContext.request.contextPath}/admin/order/delete/${orderItem.product.partNo}">Delete</a>
-						
+
 						</td>
 					</tr>
 				</c:forEach>
@@ -111,23 +128,38 @@
 
 		<!-- Input -->
 		<div>
-			<!-- partNo input -->
-			<input type="text" name="partNo">
+			<div style="float: left; width: 50%;">
+				<p>
+					<strong>Add Part</strong>
+				</p>
+				<!-- partNo input -->
+				<select name="addPartNo" class="textboxcolour">
+					<c:forEach var="product" items="${PLIST}" varStatus="productIndex">
+						<option value="${product.partNo}">
+							${product.partDescription} - $${product.carDealer} -
+							${product.partNo}</option>
+					</c:forEach>
+				</select>
 
-			<!-- addButton -->
-			<input type="submit" class="button"
-				onclick="document.pressed=this.value" value="Add"> <br>
-			
-			<!-- errorMessage -->
-			<p style="color: red;">${errorMessage}</p>
+				<!-- addButton -->
+				<input type="submit" class="button"
+					onclick="document.pressed=this.value" value="Add"> <br>
+
+				<!-- errorMessage -->
+				<p style="color: red;">${errorMessage}</p>
+			</div>
+
 
 			<!-- resetButton  -->
-			<input type="submit" class="button"
-				onclick="document.pressed=this.value" value="Reset"> <br>
+			<div style="float: right">
+				<input type="submit" class="button"
+					onclick="document.pressed=this.value" value="Reset">     
+				<!-- submitButton -->
+				<input type="submit" class="button"
+					onclick="document.pressed=this.value" value="Submit"> <br>
+			</div>
 
-			<!-- submitButton -->
-			<input type="submit" class="button"
-				onclick="document.pressed=this.value" value="Submit"> <br>
+
 		</div>
 	</form>
 </body>
