@@ -31,9 +31,8 @@
 						<li class="dropdown"><a class="dropdown-toggle"
 							data-toggle="dropdown" href="#">Admin</a>
 							<ul class="dropdown-menu">
-								<li><a href="#">Order</a></li>
-								<li><a href="#">Supplier</a></li>
-								<li><a href="#">Menu</a></li>
+								<li><a href="/inventory/admin/order/list">Order</a></li>
+<!-- 								<li><a href="#">Supplier</a></li> -->
 							</ul></li>
 					</c:if>
 					<li><a href="javascript:formSubmit()">SignOut</a></li>
