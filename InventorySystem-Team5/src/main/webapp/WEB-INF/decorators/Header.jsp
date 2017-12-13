@@ -36,6 +36,9 @@
 <!-- 								<li><a href="#">Supplier</a></li> -->
 							</ul></li>
 					</c:if>
+					
+					
+					<li><a href="/inventory/return/load">Return Product</a></li>
 					<li><a href="javascript:formSubmit()">SignOut</a></li>
 				</ul>
 			</div>

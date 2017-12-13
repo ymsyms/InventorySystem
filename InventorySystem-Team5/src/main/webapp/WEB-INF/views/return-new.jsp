@@ -42,6 +42,22 @@
   };
 	
   </script>
+  
+  
+  <link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script
+	src="/resources/demos/external/jquery-mousewheel/jquery.mousewheel.js"></script>
+<script>
+	$(function() {
+		$(".spinner").spinner({
+			min : 0
+		});
+	});
+</script>
 </head>
 <body>
 <form:form method="POST" modelAttribute="return" action="${pageContext.request.contextPath}/return/create">
@@ -54,7 +70,7 @@
 				   		<label for="returnDate"  >Return Date</label>
 				   </td>
 				   <td>
-				   		<input type="text" id="datepicker1" name="returnDate"  />
+				   		<input type="text" id="datepicker1" name="returnDate" required />
 				   		<form:errors path="returnDate" cssStyle="color: red;" />	
 				   </td>			  					
 			   </tr>
@@ -63,7 +79,7 @@
 				   		<label for="partNo" >Part No</label>
 				   </td>
 				   <td>
-				   		<select  id="partNo" name="part" onchange="selectionChanged()" >
+				   		<select  id="partNo" name="part" onchange="selectionChanged()" required >
 				   		<option value="" label="--- Select ---" />
 						    <c:forEach items="${productList}" var="product">				   		 
 						        <option value="${product.partNo}"><c:out value="${product.partNo}" /></option>
@@ -95,7 +111,10 @@
 				   		 <label for="returnQty" Class="returnFormLabel">Return Quantity</label>
 				   </td>
 				   <td>
-				   		<input type="text" id="returnQty" name="returnQty" />
+<!-- 				   		<input type="text" id="returnQty" name="returnQty"  required/> -->
+<%-- 				   		<span style="color:red;">${ returnQtyError }</span> --%>
+				   		
+				   		<input class="spinner" id="returnQty" name="returnQty" required />
 				   		<span style="color:red;">${ returnQtyError }</span>
 				   </td>
 			   </tr>						
