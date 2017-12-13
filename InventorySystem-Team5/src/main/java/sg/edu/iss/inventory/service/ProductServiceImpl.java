@@ -1,8 +1,12 @@
 package sg.edu.iss.inventory.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -49,6 +53,42 @@ public class ProductServiceImpl implements ProductService {
 	public void removeProduct(Product product) {
 		product.setProductStatus("Invalid");
 		productRepository.saveAndFlush(product);
+	}
+	
+	@Override
+	public void useProduct(HttpServletRequest request, HttpSession session) {
+		int usageQuantity = Integer.parseInt(request.getParameter("newQuantity"));
+		int availableQuantity = Integer.parseInt(request.getParameter("availableQuantity"));
+		
+		if(usageQuantity <= availableQuantity) {
+			HashMap<Product, Integer> usageSummary = (HashMap) session.getAttribute("usageSummary");
+			String partNo = request.getParameter("partNo");
+			Product toBeAdded = productRepository.findProductByPartNo(partNo);
+
+			boolean containsProduct = false;    //Checks if the product is already in the usage summary hashmap
+			for (Map.Entry<Product, Integer> pair  : usageSummary.entrySet()) {
+				if(toBeAdded.equals(pair.getKey())) {     //Execute the inner block after finding a matching Product
+					containsProduct = true;
+//					usageSummary.put(pair.getKey(), usageQuantity);    //alt way of using
+					
+					int newQuantity = pair.getValue() + usageQuantity;     //Allows adding onto an existing usage quantity
+					
+					if(newQuantity <= availableQuantity) {  //If final usage quantity is still within available quantity, the addition will be allowed
+						usageSummary.put(pair.getKey(), pair.getValue() + usageQuantity);
+					}
+					else {
+						request.setAttribute("qtyErrorMessage", "You cannot add this quantity as it will exceed the available quantity. (Current usage quantity: " + pair.getValue() + ")");
+					}
+				}
+			}
+			
+			if(containsProduct == false) {     //Adding the product if the hashmap doesn't contain it yet
+				usageSummary.put(toBeAdded, usageQuantity);
+			}
+		}
+		else {
+			request.setAttribute("qtyErrorMessage", "You cannot set a usage quantity higher than the available quantity");
+		}
 	}
 
 	@Override

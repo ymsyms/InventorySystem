@@ -2,6 +2,9 @@ package sg.edu.iss.inventory.service;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import sg.edu.iss.inventory.model.Product;
 
 public interface ProductService {
@@ -27,5 +30,7 @@ public interface ProductService {
 	ArrayList<Product> findByCarDealer(String carDealer);
 
 	ArrayList<Product> searchProductByPartNo(String partNo);
+
+	void useProduct(HttpServletRequest request, HttpSession session);
 
 }

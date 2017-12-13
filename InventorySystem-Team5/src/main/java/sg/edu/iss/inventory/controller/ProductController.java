@@ -212,11 +212,11 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/use", method = RequestMethod.POST)
-	public ModelAndView useProduct(@ModelAttribute Product product, BindingResult result) {
+	public ModelAndView useProduct(HttpServletRequest request, HttpSession session) {
 		ModelAndView mav = new ModelAndView("product-list");
+		productService.useProduct(request, session);
 		
-		
-				mav = new ModelAndView("redirect:/product/list");
+		mav = new ModelAndView("redirect:/product/list");
 		return mav;
 	}	
 }
