@@ -13,7 +13,7 @@
 <h3>User List Page</h3>
 <a href="${pageContext.request.contextPath}/user/create">Add
 	User</a>
-<table>
+<table class="table table-striped">
 
 		<thead>
 			<tr>
@@ -21,12 +21,10 @@
 				<th><spring:message code="user.userName" /></th>
 				<th><spring:message code="user.password" /></th>
 				<th><spring:message code="user.userRole" /></th>
-				<th><spring:message code="caption.edit" /></th>
-				<th><spring:message code="caption.delete" /></th>
 			</tr>
 		</thead>
 
-<tbody>
+<tbody class="table table-striped">
 
 
 	<c:forEach var="user" items="${userList}">
