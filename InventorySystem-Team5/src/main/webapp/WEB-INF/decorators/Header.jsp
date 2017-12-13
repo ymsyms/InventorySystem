@@ -27,14 +27,15 @@
 									Usage</a></li>
 							<li><a href="/inventory/report/generate">Report</a></li>
 						</ul></li>
-					<li class="dropdown"><a class="dropdown-toggle"
-						data-toggle="dropdown" href="#">Admin</a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Order</a></li>
-							<li><a href="#">Supplier</a></li>
-							<li><a href="#">Menu</a></li>
-						</ul></li>
-
+					<c:if test="${sessionScope.USERSESSION.user.userRole eq 'ROLE_ADMIN'}">
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">Admin</a>
+							<ul class="dropdown-menu">
+								<li><a href="#">Order</a></li>
+								<li><a href="#">Supplier</a></li>
+								<li><a href="#">Menu</a></li>
+							</ul></li>
+					</c:if>
 					<li><a href="javascript:formSubmit()">SignOut</a></li>
 				</ul>
 			</div>
