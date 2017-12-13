@@ -35,6 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.usernameParameter("userId")
 		.passwordParameter("password")
 		.and().logout().logoutSuccessUrl("/login?logout")
+		.and().csrf()
 		.and().exceptionHandling().accessDeniedPage("/403");
 	    
 	    http.authorizeRequests().antMatchers("/admin/**")
@@ -43,7 +44,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.usernameParameter("userId")
 		.passwordParameter("password")
 		.and().logout().logoutSuccessUrl("/login?logout")
+		.and().csrf()
 		.and().exceptionHandling().accessDeniedPage("/403");
+//	    
+//	    .and().formLogin()
+//        .loginPage("/login.jsp")
+//        .loginProcessingUrl("/j_spring_security_check")
+//        .usernameParameter("j_username")
+//        .passwordParameter("j_password")
+//        .permitAll()
 
 		
 //        http.authorizeRequests().antMatchers("/",

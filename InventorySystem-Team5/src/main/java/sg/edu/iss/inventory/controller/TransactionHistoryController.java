@@ -26,7 +26,7 @@ import sg.edu.iss.inventory.service.ProductService;
 import sg.edu.iss.inventory.service.TransactionHistoryService;
 import sg.edu.iss.inventory.validator.TransactionHistoryValidator;
 
-@RequestMapping(value = "transaction")
+@RequestMapping(value = "/transaction")
 @Controller
 public class TransactionHistoryController {
 
@@ -46,7 +46,7 @@ public class TransactionHistoryController {
 		binder.addValidators(thValidator);
 	}
 
-	@RequestMapping(value = "/viewTranHistory/{partNo}", method = RequestMethod.GET)
+	@RequestMapping(value = "/viewTranHistory/{partNo}", method = RequestMethod.POST)
 	public ModelAndView openTranHistory(@PathVariable String partNo) {
 		Product product = pService.findProducts(partNo);
 		ModelAndView mav = new ModelAndView("transaction-history");

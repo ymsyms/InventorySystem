@@ -50,3 +50,15 @@ h4 {
 	color : #fff;
 	padding : 3% 0% 0% 0%;
 }
+
+.divReportHead {
+    background: lightGrey;
+}
+
+.divReportBody {
+    background: lightblue;
+}
+
+.row{
+    overflow: hidden; 
+}

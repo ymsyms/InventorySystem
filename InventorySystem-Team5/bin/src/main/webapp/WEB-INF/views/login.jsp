@@ -54,7 +54,7 @@
 }
 
 #login-box {
-	width: 300px;
+	width: 600px;
 	padding: 20px;
 	margin: 100px auto;
 	background: #fff;
@@ -76,23 +76,22 @@
 			<div class="msg">${msg}</div>
 		</c:if>
 
-		<form name='loginForm'
-			action="<c:url value='/login' />" method='POST'>
+		<form name='loginForm' action="<c:url value='/login' />" method='POST'
+			class="form-horizontal">
 
-			<table>
-				<tr>
-					<td>User:</td>
-					<td><input type='text' name='userId'></td>
-				</tr>
-				<tr>
-					<td>Password:</td>
-					<td><input type='password' name='password' /></td>
-				</tr>
-				<tr>
-					<td colspan='2'><input name="submit" type="submit"
-						value="submit" /></td>
-				</tr>
-			</table>
+			<div class="form-group">
+				<label for="userId" class="control-label col-sm-2">User:</label> <input
+					type='text' name='userId' class="form-control">
+			</div>
+			<div class="form-group">
+
+				<label for="userId" class="control-label col-sm-2">Password:</label>
+				<input type='password' name='password' class="form-control">
+			</div>
+			<div class="form-group">
+				<input name="submit" type="submit" value="submit"
+					class="btn btn-default col-sm-2" style="margin-left:17%;" />
+			</div>
 
 			<input type="hidden" name="${_csrf.parameterName}"
 				value="${_csrf.token}" />

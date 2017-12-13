@@ -11,21 +11,24 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-
 	<form:form method="POST" modelAttribute="supplier"
 		action="${pageContext.request.contextPath}/report/supplier">
 
-		<h4>Inventory Reorder Report</h4>
-
+		<h5>Please select Supplier ID below to generate report</h5>
+	<br>
 		<table>
 			<tbody>
 				<tr>
 					<td>Supplier ID</td>
-					<td><form:input path="supplierId" /></td>
-				</tr>
-				<tr>
+					
+				<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				
+<%-- 					<td><form:input path="supplierId" /></td> --%>
 
+
+		<td><input type="text" name="supplierId" required /></td>
+		
+				<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 					<td><input type="submit" value="Generate Report"
 						class="blcass" /></td>
 					<td></td>
@@ -33,53 +36,80 @@
 				</tr>
 			</tbody>
 		</table>
+		<br><br>	
+		<p style="color: red;">${errorMessage}</p>
+			
+		
 		<c:if test="${fn:length(pSupplierList) gt 0}">
-			<table>
-				<thead>
-					<tr>
-						<th>Unit Price</th>
-						<th>Min Order Qty</th>						
-					</tr>
-				</thead>
-				<tbody>
+		
+		<h5 align="center"><u><b>Inventory Reorder Report for Supplier S${supplierId} </b></u></h5>
+		<br><br>
+			<div>
+			<div class="row divReportHead" >
+			<br>
+					<div class="col-sm-2">Part Number</div>
+					<div class="col-sm-1">Unit Price</div>
+					<div class="col-sm-2">Available Quantity</div>
+					<div class="col-sm-2">Reorder Level</div>
+					<div class="col-sm-2">Minimum Order Quantity</div>
+					<div class="col-sm-2">Order Quantity</div>
+					<div class="col-sm-1">Price</div>
+					<br>&nbsp;&nbsp;
+				</div>		
+				<div class="row divReportBody" >
+					<div class="col-sm-2" >
+					<c:forEach var="report" items="${orderDetailIdList}">
+						<br>${report.partNo}<br>
+					</c:forEach>
+					</div>
+					<div class="col-sm-1">
 					<c:forEach var="report" items="${pSupplierList}">
-						<tr class="listRecord">
-							<td align="left">${report.unitPrice}</td>
-							<td align="left">${report.minimumReorderQty}</td>
+						<br> $ ${report.unitPrice}<br>
 					</c:forEach>
-				</tbody>
-			</table>
-			<table>
-				<thead>
-					<tr>
-						<th>Qty on hand</th>
-						<th>Reorder Lvl</th>
-					</tr>
-				</thead>
-				<tbody>
+					</div>
+					<div class="col-sm-2">
 					<c:forEach var="report" items="${productList}">
-						<tr class="listRecord">
-							<td align="left">${report.availableQty}</td>
-							<td align="left">${report.reorderLevel}</td>
+						<br>${report.availableQty}<br>
 					</c:forEach>
-				</tbody>
-			</table>
-			<table>
-				<thead>
-					<tr>
-						<th>Part No</th>
-						<th>Order Qty</th>
-						<th>Price Qty</th>
-					</tr>
-				</thead>
-				<tbody>
+					</div>
+					<div class="col-sm-2">
 					<c:forEach var="report" items="${productList}">
-						<tr class="listRecord">
-							<td align="left">${report.availableQty}</td>
-							<td align="left">${report.reorderLevel}</td>
+						<br>${report.reorderLevel}<br>
 					</c:forEach>
-				</tbody>
-			</table>
+					</div>
+					<div class="col-sm-2">
+					<c:forEach var="report" items="${pSupplierList}">
+						<br>${report.minimumReorderQty}<br>
+					</c:forEach>
+					</div>
+					<div class="col-sm-2">
+					<c:forEach var="report" items="${orderDetailList}">
+						<br>${report.orderQty}<br>
+					</c:forEach>
+					</div>
+					<div class="col-sm-1">
+					<c:forEach var="report" items="${price}">
+						<br> $ ${report}<br>
+					</c:forEach>
+					</div>
+					<br>&nbsp;&nbsp;
+				</div>	
+				<div class="row divReportHead">
+				<div class="col-sm-2"></div>
+				<br>
+					<div class="col-sm-1"></div>
+					<div class="col-sm-2"></div>
+					<div class="col-sm-2"></div>
+					<div class="col-sm-2"></div>
+					<div class="col-sm-2"></div>
+					<div class="col-sm-2">Total</div>
+					<div class="col-sm-1">$
+					${total}</div>
+					<br>&nbsp;&nbsp;
+				</div>	
+			</div>
+			<br>
+			<h5 align="center"><b>End of Report </b>	</h5>
 		</c:if>
 	</form:form>
 </body>
