@@ -25,13 +25,13 @@
 <script type="text/javascript">    <%-- To allow the different buttons to do a post request to different controller methods--%>
 	function OnSubmitForm() {
 		if (document.pressed == 'Update') {
-			document.usageSummary.action = "/inventory/transaction/cartUpdate";
+			document.usageSummary.action = "/inventory/transaction/cartUpdate?${_csrf.parameterName}=${_csrf.token}";
 		} else if (document.pressed == 'Delete') {
-			document.usageSummary.action = "/inventory/transaction/cartRemove";
+			document.usageSummary.action = "/inventory/transaction/cartRemove?${_csrf.parameterName}=${_csrf.token}";
 		} else if (document.pressed == 'Clear List') {
-			document.usageSummary.action = "/inventory/transaction/cartClear";
+			document.usageSummary.action = "/inventory/transaction/cartClear?${_csrf.parameterName}=${_csrf.token}";
 		} else if (document.pressed == 'Submit') {
-			document.usageSummary.action = "/inventory/transaction/submitUsage";
+			document.usageSummary.action = "/inventory/transaction/submitUsage?${_csrf.parameterName}=${_csrf.token}";
 		}
 		return true;
 	}

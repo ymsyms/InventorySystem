@@ -21,11 +21,11 @@
 <script type="text/javascript">
 	function OnSubmitForm() {
 		if (document.pressed == 'Add') {
-			document.orderSelection.action = "/inventory/admin/order/add";
+			document.orderSelection.action = "/inventory/admin/order/add?${_csrf.parameterName}=${_csrf.token}";
 		} else if (document.pressed == 'Reset') {
-			document.orderSelection.action = "/inventory/admin/order/reset";
+			document.orderSelection.action = "/inventory/admin/order/reset?${_csrf.parameterName}=${_csrf.token}";
 		} else if (document.pressed == 'Submit') {
-			document.orderSelection.action = "/inventory/admin/order/submit";
+			document.orderSelection.action = "/inventory/admin/order/submit?${_csrf.parameterName}=${_csrf.token}";
 		}
 	}
 </script>
@@ -49,7 +49,7 @@
 		onsubmit="return OnSubmitForm()">
 
 		<h3>New Order Page</h3>
-
+		 <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
 		<!-- table -->
 		<table class="table-condensed" width="70%">
 			<colgroup>
@@ -102,6 +102,7 @@
 						<!-- column: Delete -->
 						<td><a
 							href="${pageContext.request.contextPath}/admin/order/delete/${orderItem.product.partNo}">Delete</a>
+						
 						</td>
 					</tr>
 				</c:forEach>
@@ -116,7 +117,7 @@
 			<!-- addButton -->
 			<input type="submit" class="button"
 				onclick="document.pressed=this.value" value="Add"> <br>
-
+			
 			<!-- errorMessage -->
 			<p style="color: red;">${errorMessage}</p>
 
