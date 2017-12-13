@@ -37,6 +37,7 @@
 			</tbody>
 		</table>
 		<br><br>	
+		<p style="color: red;">${errorMessage}</p>
 			
 		
 		<c:if test="${fn:length(pSupplierList) gt 0}">

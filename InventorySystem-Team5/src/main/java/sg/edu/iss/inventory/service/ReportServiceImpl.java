@@ -38,6 +38,7 @@ public class ReportServiceImpl implements ReportService {
 	@Override
 	@Transactional
 	public Supplier findSupplierbySupplierId(int supplierId) {
+		
 		return SupplierRepository.findSupplierbySupplierId(supplierId);
 	}
 

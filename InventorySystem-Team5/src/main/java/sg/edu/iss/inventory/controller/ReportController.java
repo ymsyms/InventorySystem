@@ -1,10 +1,9 @@
 package sg.edu.iss.inventory.controller;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.function.Predicate;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import sg.edu.iss.inventory.exception.MismatchSupplierIdException;
 import sg.edu.iss.inventory.model.Order;
 import sg.edu.iss.inventory.model.OrderDetail;
 import sg.edu.iss.inventory.model.OrderDetailId;
@@ -37,22 +37,22 @@ public class ReportController {
 		return mav;
 	}
 
-	@SuppressWarnings("null")
 	@RequestMapping(value = "/supplier", method = RequestMethod.POST)
-	public ModelAndView reorderReportPage(@ModelAttribute Supplier supplierR) {
+	public ModelAndView reorderReportPage(@ModelAttribute Supplier supplierR, HttpServletRequest request) {
 
 		int supplierId = supplierR.getSupplierId();
+
 		ModelAndView mav = new ModelAndView("report");
 
 		// generate supplier ID/Name for Report
 		Supplier supplier = reportService.findSupplierbySupplierId(supplierId);
 		if (supplier != null) {
-			
+
 			mav.addObject("supplierId", supplierId);
-			
+
 			ArrayList<Double> unitPrice = new ArrayList<Double>();
 			ArrayList<Integer> ordQty = new ArrayList<Integer>();
-			ArrayList<Double> price= new ArrayList<Double>();
+			ArrayList<Double> price = new ArrayList<Double>();
 			double total = 0;
 
 			// Generate orderID to get OrderDetail
@@ -93,15 +93,22 @@ public class ReportController {
 			mav.addObject("productList", productList);
 
 			for (int g = 0; g < unitPrice.size(); g++) {
-				price.add(unitPrice.get(g) * ordQty.get(g));				
+				price.add(unitPrice.get(g) * ordQty.get(g));
 			}
 			mav.addObject("price", price);
-			
+
 			for (int h = 0; h < price.size(); h++) {
 				total += price.get(h);
 			}
-			
+
 			mav.addObject("total", total);
+		} else {
+
+			try {
+				throw new MismatchSupplierIdException("There is no report available for this supplier ID!");
+			} catch (MismatchSupplierIdException e) {
+				request.setAttribute("errorMessage", e.getMessage());
+			}
 		}
 		return mav;
 	}
