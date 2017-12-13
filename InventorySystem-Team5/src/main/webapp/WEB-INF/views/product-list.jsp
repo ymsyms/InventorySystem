@@ -57,12 +57,15 @@
 						<td align="center"><a
 							href="${pageContext.request.contextPath}/transaction/viewTranHistory/${product.partNo}.html">
 								Transaction History</a></td>
-						<td align="center"><a
-							href="${pageContext.request.contextPath}/product/edit/${product.partNo}.html"><spring:message
-									code="caption.edit" /></a></td>
-						<td><a
-							href="${pageContext.request.contextPath}/product/delete/${product.partNo}.html"><spring:message
-									code="caption.delete" /></a></td>
+						<c:if
+							test="${sessionScope.USERSESSION.user.userRole eq 'ROLE_ADMIN'}">
+							<td align="center"><a
+								href="${pageContext.request.contextPath}/product/edit/${product.partNo}.html"><spring:message
+										code="caption.edit" /></a></td>
+							<td><a
+								href="${pageContext.request.contextPath}/product/delete/${product.partNo}.html"><spring:message
+										code="caption.delete" /></a></td>
+						</c:if>
 					</tr>
 				</c:forEach>
 			</tbody>
