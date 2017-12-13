@@ -1,4 +1,4 @@
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 <h3>New User page</h3>
@@ -23,7 +23,14 @@
 			</tr>
 			<tr>
 				<td><spring:message code="user.userRole" /></td>
-				<td><form:input path="userRole" /></td>
+				<td><%-- <form:input path="userRole" /> --%>
+
+				<form:select path="userRole">
+					<form:option value="NONE" label="--- Select ---" />
+					<form:option value="ROLE_ADMIN" label="Admin" />
+					<form:option value="ROLE_MECHANIC" label="Mechanic" />
+				</form:select>
+				</td>
 				<td><form:errors path="userRole" cssStyle="color: red;" /></td>
 			</tr>
 

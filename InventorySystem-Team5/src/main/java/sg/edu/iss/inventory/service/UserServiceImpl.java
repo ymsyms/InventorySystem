@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,6 +18,8 @@ public class UserServiceImpl implements UserService {
 	
 	@Resource
 	UserRepository userRepository;
+    /** PasswordEncoder */
+
 	
 	/* (non-Javadoc)
 	 * @see sg.edu.iss.inventory.service.StudentService#findAllUser()
@@ -55,7 +59,8 @@ public class UserServiceImpl implements UserService {
 	@Override
 	@Transactional
 	public User createUser(User user) {
-		user.setUserStatus("Valid");
+		user.setUserStatus("Valid");		
+
 		return userRepository.saveAndFlush(user);
 	}
 

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -29,6 +30,9 @@ public class UserController {
 	
 	@Autowired
 	UserLoginService userLoginService;	
+	
+    @Autowired
+    private PasswordEncoder encoder;
 	
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -101,8 +105,8 @@ public class UserController {
 			}
 
 		ModelAndView mav = new ModelAndView();
-		String message = "New product " + user.getUserId() + " was successfully created.";
-
+		String message = "New User " + user.getUserId() + " was successfully created.";
+		user.setPassword(encoder.encode(user.getPassword()));
 		userService.createUser(user);
 		mav.setViewName("redirect:/admin/user/list");
 
