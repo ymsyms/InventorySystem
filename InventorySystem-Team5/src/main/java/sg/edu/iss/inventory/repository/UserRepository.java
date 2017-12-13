@@ -1,5 +1,7 @@
 package sg.edu.iss.inventory.repository;
 
+import java.util.ArrayList;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -13,5 +15,8 @@ public interface UserRepository extends JpaRepository<User, String>{
 	
 	@Query("SELECT u FROM User u WHERE u.userId=:userId")
 	User findByUserId(@Param("userId") String userId);
+	
+	@Query("SELECT u FROM User u WHERE u.userStatus='Valid'")
+	ArrayList<User> findAllValidUser();
 
 }

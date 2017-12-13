@@ -1,4 +1,3 @@
-
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
@@ -11,7 +10,7 @@
 <body>
 
 <h3>User List Page</h3>
-<a href="${pageContext.request.contextPath}/user/create">Add
+<a href="${pageContext.request.contextPath}/admin/user/create">Add
 	User</a>
 <table class="table table-striped">
 
@@ -19,21 +18,25 @@
 			<tr>
 				<th><spring:message code="user.userId" /></th>
 				<th><spring:message code="user.userName" /></th>
+				
+				<th><spring:message code="user.userRole" /></th>
+				
 			</tr>
 		</thead>
 
-<tbody class="table table-striped">
+<tbody>
 
 
 	<c:forEach var="user" items="${userList}">
 		<tr class="listRecord">
 			<td align="left">${user.userId}</td>
 			<td align="left">${user.userName}</td>
+			<td align="left">${user.userRole}</td>
 			<td align="center"><a
-				href="${pageContext.request.contextPath}/admin/department/edit/${department.departmentId}.html"><spring:message
+				href="${pageContext.request.contextPath}/admin/user/edit/${user.userId}.html"><spring:message
 						code="caption.edit" /></a></td>
 			<td><a
-				href="${pageContext.request.contextPath}/admin/department/delete/${department.departmentId}.html"><spring:message
+				href="${pageContext.request.contextPath}/admin/user/delete/${user.userId}.html"><spring:message
 						code="caption.delete" /></a></td>
 		</tr>
 	</c:forEach>

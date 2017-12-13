@@ -3,8 +3,8 @@
 
 <h3>New User page</h3>
 <form:form method="POST" commandName="user"
-	action="${pageContext.request.contextPath}/user/create.html">
-	<table>
+	action="${pageContext.request.contextPath}/admin/user/create.html">
+	<table class="table table-striped">
 		<tbody>
 			<tr>
 				<td><spring:message code="user.userId" /></td>
@@ -28,11 +28,10 @@
 			</tr>
 
 			<tr>
-				<td><input type="submit" value="Create" class="button button2"  /></td>
+				<td><input type="submit" value="Create" /></td>
 				<td></td>
 				<td></td>
 			</tr>
 		</tbody>
 	</table>
 </form:form>
-
