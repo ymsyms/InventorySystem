@@ -12,7 +12,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<c:if test="${pageContext.request.userPrincipal.name != null}">
+		<h4>UserID : ${pageContext.request.userPrincipal.name}</h4>
+	</c:if>
 	<h4>Product List Page</h4>
 
 	<form:form modelAttribute="product" name="Form" method="POST"
@@ -26,11 +28,11 @@
 		</select>
 		<input type="text" name="searchVar" required />
 		<input type="submit" value="Search" />
-		
+
 	</form:form>
 	<a href="${pageContext.request.contextPath}/product/create">Add New
 		Product</a>
-		
+
 	<c:if test="${fn:length(productList) gt 0}">
 		<table class="table table-striped">
 
