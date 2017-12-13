@@ -9,7 +9,7 @@ Responsive navbar-brand image CSS
   height:50px;
 }
 .navbar-brand>img {
-  padding: 15px;
+  padding: 10px;
   width: 80%;
 }
 .navbar-inverse {
@@ -19,13 +19,25 @@ Responsive navbar-brand image CSS
 
 .navbar-inverse .navbar-brand {
     color: #fff !important;
+
 }
+
+.navbar-right li a
+{
+	color:#fff !important;
+}
+
 /* EXAMPLE 6 - Background Logo*/
 .example6 .navbar-brand{ 
   background: url(../image/logo.png) left / contain no-repeat;
   width: 700px;
   text-align: center;
-  font-size : 30px;
+  font-size : 28px;
+}
+
+.dropdown-menu li a
+{
+	color:#337ab7 !important;
 }
 
 .form-control {
