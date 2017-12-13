@@ -23,7 +23,7 @@
 		if (document.pressed == 'Use this product') {
 			document.productDetail.action = "/inventory/product/use?${_csrf.parameterName}=${_csrf.token}";
 		} else if (document.pressed == 'Transaction History') {
-			document.productDetail.action = "/inventory/transaction/viewTranHistory/${product.partNo}";
+			document.productDetail.action = "/inventory/transaction/viewTranHistory/${product.partNo}?${_csrf.parameterName}=${_csrf.token}";
 		}
 		return true;
 	}

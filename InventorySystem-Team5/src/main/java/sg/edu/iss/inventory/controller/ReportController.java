@@ -22,6 +22,7 @@ import sg.edu.iss.inventory.model.ProductSupplier;
 import sg.edu.iss.inventory.model.ProductSupplierId;
 import sg.edu.iss.inventory.model.Supplier;
 import sg.edu.iss.inventory.service.ReportService;
+import sg.edu.iss.inventory.service.UtilitiesService;
 
 @RequestMapping(value = "report")
 @Controller
@@ -39,78 +40,90 @@ public class ReportController {
 
 	@RequestMapping(value = "/supplier", method = RequestMethod.POST)
 	public ModelAndView reorderReportPage(@ModelAttribute Supplier supplierR, HttpServletRequest request) {
-
-		int supplierId = supplierR.getSupplierId();
-
+		
 		ModelAndView mav = new ModelAndView("report");
-
-		// generate supplier ID/Name for Report
-		Supplier supplier = reportService.findSupplierbySupplierId(supplierId);
-		if (supplier != null) {
-
-			mav.addObject("supplierId", supplierId);
-
-			ArrayList<Double> unitPrice = new ArrayList<Double>();
-			ArrayList<Integer> ordQty = new ArrayList<Integer>();
-			ArrayList<Double> price = new ArrayList<Double>();
-			double total = 0;
-
-			// Generate orderID to get OrderDetail
-			ArrayList<Order> orderList = (ArrayList<Order>) reportService.findOrderBySupplierId(supplier);
-
-			// Get Order Detail List
-			ArrayList<OrderDetail> orderDetailList = new ArrayList<OrderDetail>();
-			for (Iterator<Order> iterator = orderList.iterator(); iterator.hasNext();) {
-				Order order = (Order) iterator.next();
-				orderDetailList = reportService.findOrderDetailByOrderId(order.getOrderId());
-			}
-			mav.addObject("orderDetailList", orderDetailList);
-
-			ArrayList<OrderDetailId> orderDetailIdList = new ArrayList<OrderDetailId>();
-
-			for (Iterator<OrderDetail> iterator = orderDetailList.iterator(); iterator.hasNext();) {
-				OrderDetail orderDetail = (OrderDetail) iterator.next();
-				ordQty.add(orderDetail.getOrderQty());
-				orderDetailIdList.add(orderDetail.getId());
-			}
-
-			mav.addObject("orderDetailIdList", orderDetailIdList);
-
-			// Get Product Supplier List
-			ArrayList<ProductSupplier> pSupplierList = reportService.findProductSupplierByProductId(supplierId);
-			mav.addObject("pSupplierList", pSupplierList);
-
-			// Get Product List
-			ArrayList<Product> productList = new ArrayList<Product>();
-
-			for (Iterator<ProductSupplier> iterator = pSupplierList.iterator(); iterator.hasNext();) {
-				ProductSupplier productSupplier = (ProductSupplier) iterator.next();
-				ProductSupplierId productSupplierId = productSupplier.getId();
-				unitPrice.add(productSupplier.getUnitPrice());
-				String partNo = productSupplierId.getPartNo();
-				productList.add(reportService.findProductByPartNo(partNo));
-			}
-			mav.addObject("productList", productList);
-
-			for (int g = 0; g < unitPrice.size(); g++) {
-				price.add(unitPrice.get(g) * ordQty.get(g));
-			}
-			mav.addObject("price", price);
-
-			for (int h = 0; h < price.size(); h++) {
-				total += price.get(h);
-			}
-
-			mav.addObject("total", total);
-		} else {
-
-			try {
+		
+		String sId = request.getParameter("supplierId");
+		if (!UtilitiesService.isInt(sId)) 
+		{
+			try 
+			{
 				throw new MismatchSupplierIdException("There is no report available for this supplier ID!");
-			} catch (MismatchSupplierIdException e) {
+			} 
+			catch (MismatchSupplierIdException e) 
+			{
 				request.setAttribute("errorMessage", e.getMessage());
+			}
+		} else {
+			int supplierId = supplierR.getSupplierId();
+
+			// generate supplier ID/Name for Report
+			Supplier supplier = reportService.findSupplierbySupplierId(supplierId);
+			if (supplier != null) {
+
+				mav.addObject("supplierId", supplierId);
+
+				ArrayList<Double> unitPrice = new ArrayList<Double>();
+				ArrayList<Integer> ordQty = new ArrayList<Integer>();
+				ArrayList<Double> price = new ArrayList<Double>();
+				double total = 0;
+
+				// Generate orderID to get OrderDetail
+				ArrayList<Order> orderList = (ArrayList<Order>) reportService.findOrderBySupplierId(supplier);
+
+				// Get Order Detail List
+				ArrayList<OrderDetail> orderDetailList = new ArrayList<OrderDetail>();
+				for (Iterator<Order> iterator = orderList.iterator(); iterator.hasNext();) {
+					Order order = (Order) iterator.next();
+					orderDetailList = reportService.findOrderDetailByOrderId(order.getOrderId());
+				}
+				mav.addObject("orderDetailList", orderDetailList);
+
+				ArrayList<OrderDetailId> orderDetailIdList = new ArrayList<OrderDetailId>();
+
+				for (Iterator<OrderDetail> iterator = orderDetailList.iterator(); iterator.hasNext();) {
+					OrderDetail orderDetail = (OrderDetail) iterator.next();
+					ordQty.add(orderDetail.getOrderQty());
+					orderDetailIdList.add(orderDetail.getId());
+				}
+
+				mav.addObject("orderDetailIdList", orderDetailIdList);
+
+				// Get Product Supplier List
+				ArrayList<ProductSupplier> pSupplierList = reportService.findProductSupplierByProductId(supplierId);
+				mav.addObject("pSupplierList", pSupplierList);
+
+				// Get Product List
+				ArrayList<Product> productList = new ArrayList<Product>();
+
+				for (Iterator<ProductSupplier> iterator = pSupplierList.iterator(); iterator.hasNext();) {
+					ProductSupplier productSupplier = (ProductSupplier) iterator.next();
+					ProductSupplierId productSupplierId = productSupplier.getId();
+					unitPrice.add(productSupplier.getUnitPrice());
+					String partNo = productSupplierId.getPartNo();
+					productList.add(reportService.findProductByPartNo(partNo));
+				}
+				mav.addObject("productList", productList);
+
+				for (int g = 0; g < unitPrice.size(); g++) {
+					price.add(unitPrice.get(g) * ordQty.get(g));
+				}
+				mav.addObject("price", price);
+
+				for (int h = 0; h < price.size(); h++) {
+					total += price.get(h);
+				}
+
+				mav.addObject("total", total);
+			} else {
+
+				try {
+					throw new MismatchSupplierIdException("There is no report available for this supplier ID!");
+				} catch (MismatchSupplierIdException e) {
+					request.setAttribute("errorMessage", e.getMessage());
+				}
 			}
 		}
 		return mav;
 	}
-
 }
