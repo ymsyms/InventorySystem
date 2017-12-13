@@ -73,4 +73,13 @@ public class ReportServiceImpl implements ReportService {
 		public Product findProductByPartNo(String partNo) {
 			return ProductRepository.findProductByPartNo(partNo);
 		}
+		
+		
+		
+		
+		@Override
+		@Transactional
+		public ProductSupplier findProductSupplierByPNoSId(String partNo, int supplierId) {
+			return productSupplierRepository.findProductSupplierByPNoSId(partNo,supplierId);
+		}
 }

@@ -3,7 +3,9 @@ package sg.edu.iss.inventory.controller;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,10 +21,9 @@ import sg.edu.iss.inventory.model.OrderDetail;
 import sg.edu.iss.inventory.model.OrderDetailId;
 import sg.edu.iss.inventory.model.Product;
 import sg.edu.iss.inventory.model.ProductSupplier;
-import sg.edu.iss.inventory.model.ProductSupplierId;
 import sg.edu.iss.inventory.model.Supplier;
+import sg.edu.iss.inventory.repository.SupplierRepository;
 import sg.edu.iss.inventory.service.ReportService;
-import sg.edu.iss.inventory.service.UtilitiesService;
 
 @RequestMapping(value = "report")
 @Controller
@@ -30,43 +31,56 @@ public class ReportController {
 
 	@Autowired
 	ReportService reportService;
+	@Resource
+	SupplierRepository sRepo;
 
 	@RequestMapping(value = "/generate", method = RequestMethod.GET)
-	public ModelAndView reorderReportPageDisplay(Model model) {
+
+	public ModelAndView reorderReportPageDisplay(Model model, HttpSession session) {
+
+		ArrayList<Supplier> sList = (ArrayList<Supplier>) sRepo.findAll();
+		session.setAttribute("SLIST", sList);
+
 		model.addAttribute("supplier", new Supplier());
 		ModelAndView mav = new ModelAndView("report");
 		return mav;
 	}
 
 	@RequestMapping(value = "/supplier", method = RequestMethod.POST)
-	public ModelAndView reorderReportPage(@ModelAttribute Supplier supplierR, HttpServletRequest request) {
-		
-		ModelAndView mav = new ModelAndView("report");		
-		
-			int supplierId = supplierR.getSupplierId();
+	public ModelAndView reorderReportPage(@ModelAttribute Supplier supplierR, HttpSession session,
+			HttpServletRequest request) {
 
-			// generate supplier ID/Name for Report
-			Supplier supplier = reportService.findSupplierbySupplierId(supplierId);
-			if (supplier != null) {
+		ModelAndView mav = new ModelAndView("report");
 
-				mav.addObject("supplierId", supplierId);
+		int supplierId = supplierR.getSupplierId();
 
-				ArrayList<Double> unitPrice = new ArrayList<Double>();
-				ArrayList<Integer> ordQty = new ArrayList<Integer>();
-				ArrayList<Double> price = new ArrayList<Double>();
-				double total = 0;
+		// generate supplier ID/Name for Report
+		Supplier supplier = reportService.findSupplierbySupplierId(supplierId);
+		if (supplier != null) 
+		{
+			//supplier ID
+			mav.addObject("supplierId", supplierId);
 
-				// Generate orderID to get OrderDetail
-				ArrayList<Order> orderList = (ArrayList<Order>) reportService.findOrderBySupplierId(supplier);
+			ArrayList<Double> unitPrice = new ArrayList<Double>();
+			ArrayList<Integer> ordQty = new ArrayList<Integer>();
+			ArrayList<Double> price = new ArrayList<Double>();
+			double total = 0;
 
-				// Get Order Detail List
+			//orderID
+			ArrayList<Order> orderList = (ArrayList<Order>) reportService.findOrderBySupplierId(supplier);
+			
+			if (!orderList.isEmpty()) {
+				
+				//orderDetail
 				ArrayList<OrderDetail> orderDetailList = new ArrayList<OrderDetail>();
 				for (Iterator<Order> iterator = orderList.iterator(); iterator.hasNext();) {
 					Order order = (Order) iterator.next();
 					orderDetailList = reportService.findOrderDetailByOrderId(order.getOrderId());
 				}
+				
 				mav.addObject("orderDetailList", orderDetailList);
 
+				//orderDetailId
 				ArrayList<OrderDetailId> orderDetailIdList = new ArrayList<OrderDetailId>();
 
 				for (Iterator<OrderDetail> iterator = orderDetailList.iterator(); iterator.hasNext();) {
@@ -74,24 +88,35 @@ public class ReportController {
 					ordQty.add(orderDetail.getOrderQty());
 					orderDetailIdList.add(orderDetail.getId());
 				}
-
 				mav.addObject("orderDetailIdList", orderDetailIdList);
 
-				// Get Product Supplier List
-				ArrayList<ProductSupplier> pSupplierList = reportService.findProductSupplierByProductId(supplierId);
-				mav.addObject("pSupplierList", pSupplierList);
-
-				// Get Product List
+				//partNo
+				ArrayList<String> partNoList = new ArrayList<String>();
+				for (Iterator<OrderDetailId> iterator = orderDetailIdList.iterator(); iterator.hasNext();) {
+					OrderDetailId orderDetailId = (OrderDetailId) iterator.next();	
+					partNoList.add(orderDetailId.getPartNo());
+				}
+				
+				// Product (Reorder Point, AvailQty)
 				ArrayList<Product> productList = new ArrayList<Product>();
-
-				for (Iterator<ProductSupplier> iterator = pSupplierList.iterator(); iterator.hasNext();) {
-					ProductSupplier productSupplier = (ProductSupplier) iterator.next();
-					ProductSupplierId productSupplierId = productSupplier.getId();
-					unitPrice.add(productSupplier.getUnitPrice());
-					String partNo = productSupplierId.getPartNo();
+				for (Iterator<String> iterator = partNoList.iterator(); iterator.hasNext();) {
+					String partNo = (String) iterator.next();	
 					productList.add(reportService.findProductByPartNo(partNo));
 				}
 				mav.addObject("productList", productList);
+				
+				// ProductSupplier(UnitPrice)
+				ArrayList<ProductSupplier> pSupplierList = new ArrayList<ProductSupplier>();
+				for (Iterator<String> iterator = partNoList.iterator(); iterator.hasNext();) {
+					String partNo = (String) iterator.next();	
+					pSupplierList.add(reportService.findProductSupplierByPNoSId(partNo, supplierId));
+				}
+				mav.addObject("pSupplierList", pSupplierList);
+				
+				for (Iterator<ProductSupplier> iterator = pSupplierList.iterator(); iterator.hasNext();) {
+					ProductSupplier productSupplier = (ProductSupplier) iterator.next();
+					unitPrice.add(productSupplier.getUnitPrice());
+				}
 
 				for (int g = 0; g < unitPrice.size(); g++) {
 					price.add(unitPrice.get(g) * ordQty.get(g));
@@ -103,14 +128,18 @@ public class ReportController {
 				}
 
 				mav.addObject("total", total);
-			} else {
+			}
+			else {
 
 				try {
 					throw new MismatchSupplierIdException("There is no report available for this supplier ID!");
-				} catch (MismatchSupplierIdException e) {
+				}
+				catch (MismatchSupplierIdException e) {
 					request.setAttribute("errorMessage", e.getMessage());
 				}
 			}
+
+		}
 		return mav;
 	}
 }

@@ -69,16 +69,16 @@
 			class="table table-striped table-bordered table-hover table-condensed table"
 			width="70%">
 			<colgroup>
-				<col span="1" style="width: 10%;">
-				<col span="1" style="width: 50%;">
-				<col span="1" style="width: 10%;">
-				<col span="1" style="width: 10%;">
-				<col span="1" style="width: 10%;">
+				<col class="col-md-2" >
+				<col class="col-md-5" >
+				<col class="col-md-2" >
+				<col class="col-md-2" >
+				<col class="col-md-1" >
 			</colgroup>
 
 			<thead>
 				<tr>
-					<th style="">PartNo</th>
+					<th>PartNo</th>
 					<th>Supplier / UnitPrice / MinOrderQty</th>
 					<th>CurrentQty</th>
 					<th colspan="2">OrderQty</th>
@@ -106,13 +106,13 @@
 						</select></td>
 
 						<!-- column: currentQty -->
-						<td align="left"><input type="text" class="fakeLabel"
+						<td align="left"><input type="text" class="fakeLabel" style="width:100px"
 							id="currentQty${theCount.index}"
 							name="currentQty${theCount.index}"
 							value="${orderItem.product.availableQty}" readonly="readonly"></td>
 
 						<!-- column: orderQty -->
-						<td align="left"><input type="text" class="textboxcolour"
+						<td align="left"><input type="text" class="textboxcolour" style="width:100px"
 							id="orderQty${theCount.index}" name="orderQty${theCount.index}"
 							value="${orderItem.quantity}"></td>
 

@@ -28,4 +28,6 @@ public interface ReportService {
 	//availQty,ReorderLvl
 	// to retrieve product price by supplier ID
 	Product findProductByPartNo(String partNo);
+	
+	ProductSupplier findProductSupplierByPNoSId(String partNo, int supplierId);
 }
