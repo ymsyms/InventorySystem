@@ -41,20 +41,8 @@ public class ReportController {
 	@RequestMapping(value = "/supplier", method = RequestMethod.POST)
 	public ModelAndView reorderReportPage(@ModelAttribute Supplier supplierR, HttpServletRequest request) {
 		
-		ModelAndView mav = new ModelAndView("report");
+		ModelAndView mav = new ModelAndView("report");		
 		
-		String sId = request.getParameter("supplierId");
-		if (!UtilitiesService.isInt(sId)) 
-		{
-			try 
-			{
-				throw new MismatchSupplierIdException("There is no report available for this supplier ID!");
-			} 
-			catch (MismatchSupplierIdException e) 
-			{
-				request.setAttribute("errorMessage", e.getMessage());
-			}
-		} else {
 			int supplierId = supplierR.getSupplierId();
 
 			// generate supplier ID/Name for Report
@@ -123,7 +111,6 @@ public class ReportController {
 					request.setAttribute("errorMessage", e.getMessage());
 				}
 			}
-		}
 		return mav;
 	}
 }
