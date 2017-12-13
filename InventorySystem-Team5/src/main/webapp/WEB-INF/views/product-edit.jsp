@@ -32,22 +32,22 @@
 			<tr>
 				<td>Dealer</td>
 				<td><form:input path="carDealer" /></td>
-<%-- 				<td><form:errors path="carDealer" cssStyle="color: red;" /></td> --%>
+				<td><form:errors path="carDealer" cssStyle="color: red;" /></td>
 			</tr>
 			<tr>
 				<td>Part Description</td>
 				<td><form:input path="partDescription" /></td>
-<%-- 				<td><form:errors path="partDescription" cssStyle="color: red;" /></td> --%>
+				<td><form:errors path="partDescription" cssStyle="color: red;" /></td>
 			</tr>
 			<tr>
 				<td>Available Quantity</td>
 				<td><form:input path="availableQty" class="spinner" /></td>
-<%-- 				<td><form:errors path="availableQty" cssStyle="color: red;" /></td> --%>
+				<td><form:errors path="availableQty" cssStyle="color: red;" /></td>
 			</tr>
 			<tr>
 				<td>Color</td>
 				<td><form:input path="color" /></td>
-<%-- 				<td><form:errors path="color" cssStyle="color: red;" /></td> --%>
+				<td><form:errors path="color" cssStyle="color: red;" /></td>
 			</tr>
 			<tr>
 				<td>Dimension</td>
@@ -56,20 +56,14 @@
 			<tr>
 				<td>Reorder Level</td>
 				<td><form:input path="reorderLevel" class="spinner" /></td>
-<%-- 				<td><form:errors path="reorderLevel" cssStyle="color: red;" /></td> --%>
+				<td><form:errors path="reorderLevel" cssStyle="color: red;" /></td>
 			</tr>
 			<tr>
 				<td>Shelf Location</td>
 				<td><form:input path="shelfLocation" /></td>
-			</tr>
-			<tr></tr>
-			</table>
-			</form:form>
-			<form:form>
-			<table class="table-success">
-			<tr>
-			
-				<td><input type="submit" value="Update" class="blcass" /></td>
+			</tr>			
+			<tr>			
+				<td><input type="submit" value="Update" class="button button2"  /></td>
 				<td></td>
 				<td></td>
 			</tr>
@@ -77,4 +71,3 @@
 	</table>
 
 </form:form>
-

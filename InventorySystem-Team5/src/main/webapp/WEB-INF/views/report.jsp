@@ -30,7 +30,7 @@
 		
 				<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 					<td><input type="submit" value="Generate Report"
-						class="blcass" /></td>
+						class="button button2"  /></td>
 					<td></td>
 					<td></td>
 				</tr>

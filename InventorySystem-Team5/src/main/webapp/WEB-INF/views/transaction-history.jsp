@@ -38,9 +38,11 @@
 <body>
 	<form:form method="POST" modelAttribute="product"
 		action="${pageContext.request.contextPath}/transaction/searchTranHistory/${partNo}">
-		<a href="${pageContext.request.contextPath}/product/detail/${product.partNo}">Back To Product Detail</a>
-		
-		
+		<a
+			href="${pageContext.request.contextPath}/product/detail/${product.partNo}">Back
+			To Product Detail</a>
+
+
 		<h3>Transaction History</h3>
 
 		<table class="table table-striped">
@@ -63,12 +65,12 @@
 					<td><label for="tranEndDate">Transaction End Date</label></td>
 					<td><input type="text" id="datepicker1" name="edate"
 						value="${sessionScope.edate}" /></td>
-						<span style="color: red;">${ dateErrorMessage }</span>
+					<span style="color: red;">${ dateErrorMessage }</span>
 				</tr>
 
 
 				<tr>
-					<td><input type="submit" name="searchbtn" value="Search" /></td>
+					<td><input type="submit" name="searchbtn" value="Search" class="button button2"  /></td>
 				</tr>
 
 			</tbody>

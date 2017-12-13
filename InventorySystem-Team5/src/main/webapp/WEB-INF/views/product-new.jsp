@@ -65,8 +65,12 @@
 	</table>
 	<table >
 		<tr>
-			<td><input type="reset" value="Reset" size="40" /></td>			
-			<td><input type="submit" value="Add" size="40" /></td>			
+			<td><input type="reset" value="Reset" class="button button2" /></td>
+			<td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td>	
+			<td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td>	
+			<td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td>	
+			<td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td>	
+			<td><input type="submit" value="Add" class="button button2" /></td>			
 		</tr>
 		</tbody>
 	</table>

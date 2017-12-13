@@ -38,13 +38,15 @@
 <h3>Product Detail page</h3>
 <%-- <form:form method="POST" modelAttribute="product"
 	action="${pageContext.request.contextPath}/product/detail/${product.partNo}.html"> --%>
-<form name="productDetail" method="POST" onsubmit="return OnSubmitForm()">
-<a href="${pageContext.request.contextPath}/product/list">Back To Product List</a>
+<form name="productDetail" method="POST"
+	onsubmit="return OnSubmitForm()">
+	<a href="${pageContext.request.contextPath}/product/list">Back To
+		Product List</a>
 	<table class="table table-striped">
 		<tbody>
 			<tr>
 				<td><spring:message code="product.partNo" /></td>
-				<td><input type="text" name="partNo" readonly="readonly" class="fakeLabel" value="${product.partNo}"/></td>
+				<td>${product.partNo}</td>
 			</tr>
 			<tr>
 				<td><spring:message code="product.carDealer" /></td>
@@ -56,7 +58,7 @@
 			</tr>
 			<tr>
 				<td><spring:message code="product.availableQty" /></td>
-				<td><input type="text" name="availableQuantity" readonly="readonly" class="fakeLabel" value="${product.availableQty}"/></td>
+				<td>${product.availableQty}</td>
 			</tr>
 			<tr>
 				<td><spring:message code="product.color" /></td>
@@ -80,28 +82,11 @@
 			</tr>
 		</tbody>
 	</table>
-	
-	<input type="submit" onclick="document.pressed=this.value" value="Use this product" />
-	<span>&nbsp&nbsp&nbsp&nbsp&nbsp</span>
-	<input type="submit" onclick="document.pressed=this.value" value="Transaction History" />
-	<span style="color:red;"> ${qtyErrorMessage } </span>
-</form>
 
-	<%-- <table>
-		<tbody >
-			<tr>
-			    
-				<td><form:form modelAttribute="product" method="POST"
-						action="${pageContext.request.contextPath}/product/use">						
-						<td><input type="submit" value="Use This Product" class="blcass" /></td>
-					</form:form></td>
-					<td>&nbsp&nbsp&nbsp&nbsp&nbsp</td>
-				<td><form:form modelAttribute="product" method="POST"
-					action="${pageContext.request.contextPath}/product/use">
-					<td><input type="submit" value="Transaction History"
-						class="blcass" /></td>
-				</form:form></td>
-			</tr>
-		</tbody>
-	</table> --%>
+	<input type="submit" onclick="document.pressed=this.value" class="button button2" 
+		value="Use this product" /> <span>&nbsp&nbsp&nbsp&nbsp&nbsp</span> <input
+		type="submit" onclick="document.pressed=this.value" class="button button2" 
+		value="Transaction History" /> <span style="color: red;">
+		${qtyErrorMessage } </span>
+</form>
 

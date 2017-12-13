@@ -18,10 +18,11 @@
 					}
 				</script>
 				<ul class="nav navbar-nav navbar-right">
-					<li class="active"><a href="/inventory/product/list">Product</a></li>
+					<li class="active"><a href="/inventory/product/list">Home</a></li>
 					<li><a href="/inventory/transaction/usageSummary">RecordUsage</a></li>
 					<li><a href="/inventory/admin/user/list">User</a></li>
 					<li><a href="/inventory/admin/supplier/list">Supplier</a></li>
+					<li><a href="/inventory/report/generate">Report</a></li>
 					<li><a href="javascript:formSubmit()">SignOut</a></li>
 				</ul>
 			</div>

@@ -27,7 +27,7 @@
 
 		</select>
 		<input type="text" name="searchVar" required />
-		<input type="submit" value="Search" />
+		<input type="submit" class="button button2" value="Search" />
 
 	</form:form>
 	<a href="${pageContext.request.contextPath}/product/create">Add New

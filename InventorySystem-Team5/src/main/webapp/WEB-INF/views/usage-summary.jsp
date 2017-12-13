@@ -9,7 +9,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Usage Summary</title>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -22,7 +23,9 @@
 	});
 </script>
 
-<script type="text/javascript">    <%-- To allow the different buttons to do a post request to different controller methods--%>
+<script type="text/javascript">
+	
+<%-- To allow the different buttons to do a post request to different controller methods--%>
 	function OnSubmitForm() {
 		if (document.pressed == 'Update') {
 			document.usageSummary.action = "/inventory/transaction/cartUpdate?${_csrf.parameterName}=${_csrf.token}";
@@ -45,7 +48,8 @@
 </style>
 </head>
 <body>
-	<form name="usageSummary" method="post"	onsubmit="return OnSubmitForm();">
+	<form name="usageSummary" method="post"
+		onsubmit="return OnSubmitForm();">
 		<h3>Usage Summary</h3>
 		<c:choose>
 			<c:when test='${ fn:length(usageSummary) > 0}'>
@@ -60,40 +64,41 @@
 						<th>Change Usage To</th>
 						<th>Available Quantity</th>
 					</tr>
-					<c:forEach var="product" items="${usageSummary}" varStatus="mapIndex">
+					<c:forEach var="product" items="${usageSummary}"
+						varStatus="mapIndex">
 						<tr>
 							<td><input type="checkbox" id="chk${mapIndex.index}"
 								name="chk${mapIndex.index}" /></td>
 							<td><input type="text" readonly="readonly" class="fakeLabel"
 								id="partNo${mapIndex.index}" name="partNo${mapIndex.index}"
-								value="${product.key.partNo}"/></td>
+								value="${product.key.partNo}" /></td>
 							<td><input type="text" readonly="readonly" class="fakeLabel"
-								value="${product.value}"/></td>
-							<td><input class="spinner" value="${product.value}" style="text-align: center"
-								id="qty${mapIndex.index}" name="qty${mapIndex.index}"/></td>
+								value="${product.value}" /></td>
+							<td><input class="spinner" value="${product.value}"
+								style="text-align: center" id="qty${mapIndex.index}"
+								name="qty${mapIndex.index}" /></td>
 							<td><input type="text" readonly="readonly" class="fakeLabel"
-								id="stock${mapIndex.index}" value="${product.key.availableQty}"/>
+								id="stock${mapIndex.index}" value="${product.key.availableQty}" />
 							</td>
 						</tr>
 					</c:forEach>
 				</table>
 				<br />
-				<input type="submit" class="button"	onclick="document.pressed=this.value" value="Update" />
-				<input type="submit" class="button" onclick="document.pressed=this.value" value="Delete" />
-				<input type="submit" onclick="document.pressed=this.value" value="Clear List" />
-				<span style="color:red;">${ qtyErrorMessage }</span>
-				<br /> <br />
-				
+				<input type="submit" class="button button2"
+					onclick="document.pressed=this.value" value="Update" />
+				<input type="submit" class="button button2"
+					onclick="document.pressed=this.value" value="Delete" />
+				<input type="submit" class="button button2"
+					onclick="document.pressed=this.value" value="Clear List" />
+				<span style="color: red;">${ qtyErrorMessage }</span>
+				<br />
+				<br />
+
 				<label for="custName">Customer Name:</label>
 				<input type="text" name="custName" id="custName" />
-				<span style="color:red;">${ nameErrorMessage }</span>
-				
-				<%-- <label for="custName">Customer Name:</label>
-				<form:input path="custName" name="custName" id="custName" />
-				<form:errors path="custName" cssStyle="color: red;"></form:errors> --%>
-				<br />
-				
-				<input type="submit" class="button" onclick="document.pressed=this.value" value="Submit" />
+				<span style="color: red;">${ nameErrorMessage }</span>
+				<input type="submit" class="button button2" 
+					onclick="document.pressed=this.value" value="Submit" />
 			</c:when>
 			<c:otherwise>
 				<p>No items have been added yet.</p>

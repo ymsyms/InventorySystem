@@ -28,7 +28,7 @@
 			</tr>
 
 			<tr>
-				<td><input type="submit" value="Create" /></td>
+				<td><input type="submit" value="Create" class="button button2"  /></td>
 				<td></td>
 				<td></td>
 			</tr>
