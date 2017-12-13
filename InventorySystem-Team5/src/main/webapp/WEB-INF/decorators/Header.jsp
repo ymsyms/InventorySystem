@@ -32,6 +32,7 @@
 							data-toggle="dropdown" href="#">Admin</a>
 							<ul class="dropdown-menu">
 								<li><a href="/inventory/admin/order/list">Order</a></li>
+								<li><a href="/inventory/admin/user/list">User</a></li>
 <!-- 								<li><a href="#">Supplier</a></li> -->
 							</ul></li>
 					</c:if>

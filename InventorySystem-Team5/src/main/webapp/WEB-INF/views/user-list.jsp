@@ -19,8 +19,6 @@
 			<tr>
 				<th><spring:message code="user.userId" /></th>
 				<th><spring:message code="user.userName" /></th>
-				<th><spring:message code="user.password" /></th>
-				<th><spring:message code="user.userRole" /></th>
 			</tr>
 		</thead>
 
