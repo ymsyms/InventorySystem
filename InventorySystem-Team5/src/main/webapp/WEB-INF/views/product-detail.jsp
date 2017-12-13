@@ -23,14 +23,14 @@
 		if (document.pressed == 'Use this product') {
 			document.productDetail.action = "/inventory/product/use?${_csrf.parameterName}=${_csrf.token}";
 		} else if (document.pressed == 'Transaction History') {
-			document.productDetail.action = "/inventory/transaction/viewTranHistory/${product.partNo}?${_csrf.parameterName}=${_csrf.token}";
+			document.productDetail.action = "/inventory/transaction/viewTranHistory?${_csrf.parameterName}=${_csrf.token}";
 		}
 		return true;
 	}
 </script>
 <style type="text/css">
 .fakeLabel {
-	background: rgba(0, 0, 0, 0);
+	background: rgba(0, 0, 0, 0);	
 	border: none;
 }
 </style>
@@ -38,15 +38,13 @@
 <h3>Product Detail page</h3>
 <%-- <form:form method="POST" modelAttribute="product"
 	action="${pageContext.request.contextPath}/product/detail/${product.partNo}.html"> --%>
-<form name="productDetail" method="POST"
-	onsubmit="return OnSubmitForm()">
-	<a href="${pageContext.request.contextPath}/product/list">Back To
-		Product List</a>
+<form name="productDetail" method="post" onsubmit="return OnSubmitForm()">
+<a href="${pageContext.request.contextPath}/product/list">Back To Product List</a>
 	<table class="table table-striped">
 		<tbody>
 			<tr>
 				<td><spring:message code="product.partNo" /></td>
-				<td>${product.partNo}</td>
+				<td>${product.partNo}<input type="hidden" name="partNo" value="${product.partNo}"/></td>
 			</tr>
 			<tr>
 				<td><spring:message code="product.carDealer" /></td>
@@ -58,7 +56,7 @@
 			</tr>
 			<tr>
 				<td><spring:message code="product.availableQty" /></td>
-				<td>${product.availableQty}</td>
+				<td>${product.availableQty}<input type="hidden" name="availableQuantity" value="${product.availableQty}"/></td>
 			</tr>
 			<tr>
 				<td><spring:message code="product.color" /></td>
@@ -78,15 +76,15 @@
 			</tr>
 			<tr>
 				<td><spring:message code="caption.qty" /></td>
-				<td><input class="spinner" id="newQuantity" name="newQuantity" /></td>
+				<td><input class="spinner" id="newQuantity" name="newQuantity" required /></td>
 			</tr>
 		</tbody>
 	</table>
-
-	<input type="submit" onclick="document.pressed=this.value" class="button button2" 
-		value="Use this product" /> <span>&nbsp&nbsp&nbsp&nbsp&nbsp</span> <input
-		type="submit" onclick="document.pressed=this.value" class="button button2" 
-		value="Transaction History" /> <span style="color: red;">
-		${qtyErrorMessage } </span>
+	
+	<input type="submit" onclick="document.pressed=this.value" value="Use this product" class="button button2"/>
+	<span>&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+	<input type="submit" onclick="document.pressed=this.value" value="Transaction History" class="button button2"/>
+	<span style="color:red;"> ${qtyErrorMessage } </span>
 </form>
+	
 

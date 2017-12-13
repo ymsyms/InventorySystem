@@ -56,30 +56,32 @@
 				<%-- Might be redundant, pending removal
 				<input type="hidden" id="size" value="${ fn:length(usageSummary)}" />
 				--%>
-				<table style="cellspacing: 2; cellpadding: 2; border: 1;">
+				<table class="table table-striped">
 					<tr>
 						<th>Delete</th>
 						<th>Part no.</th>
-						<th>Usage Quantity</th>
+						<th>Usage Quantity</th>						
+						<th>Available Quantity</th>						
+						
 						<th>Change Usage To</th>
-						<th>Available Quantity</th>
 					</tr>
 					<c:forEach var="product" items="${usageSummary}"
 						varStatus="mapIndex">
 						<tr>
 							<td><input type="checkbox" id="chk${mapIndex.index}"
 								name="chk${mapIndex.index}" /></td>
-							<td><input type="text" readonly="readonly" class="fakeLabel"
+							<td>${product.key.partNo}<input type="hidden" 
 								id="partNo${mapIndex.index}" name="partNo${mapIndex.index}"
 								value="${product.key.partNo}" /></td>
-							<td><input type="text" readonly="readonly" class="fakeLabel"
-								value="${product.value}" /></td>
+							<td>${product.value}<input type="hidden" 
+								value="${product.value}" /></td>							
+							<td>${product.key.availableQty}<input type="hidden"  
+								id="stock${mapIndex.index}" value="${product.key.availableQty}" />
+							</td>
+							
 							<td><input class="spinner" value="${product.value}"
 								style="text-align: center" id="qty${mapIndex.index}"
 								name="qty${mapIndex.index}" /></td>
-							<td><input type="text" readonly="readonly" class="fakeLabel"
-								id="stock${mapIndex.index}" value="${product.key.availableQty}" />
-							</td>
 						</tr>
 					</c:forEach>
 				</table>
