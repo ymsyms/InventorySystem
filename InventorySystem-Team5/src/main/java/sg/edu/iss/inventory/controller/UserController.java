@@ -114,18 +114,5 @@ public class UserController {
 		return mav;
 	}		
 	
-	
-//	@RequestMapping(value="/create",method= RequestMethod.POST)
-//	public ModelAndView createNewUser(@ModelAttribute UserController user,BiBindingResult result,final RedirectAttributes redirectAttributes)
-//	{
-////		if(result.hasError())
-////		{
-////			return new ModelAndView("user-new");
-////		}
-//		
-//		ModelAndView modelAndView = new ModelAndView();
-//		
-//		return modelAndView;
-//	}
 
 }

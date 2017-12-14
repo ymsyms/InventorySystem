@@ -63,7 +63,7 @@
 
 			<tr>
 
-				<td><input type="submit" value="Update" class="blcass" /></td>
+				<td><input type="submit" value="Update" class="button button2" /></td>
 				<td></td>
 				<td></td>
 			</tr>

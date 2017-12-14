@@ -142,7 +142,7 @@
 				</select>
 
 				<!-- addButton -->
-				<input type="submit" class="button"
+				<input type="submit" class="button button2"
 					onclick="document.pressed=this.value" value="Add"> <br>
 
 				<!-- errorMessage -->
@@ -152,10 +152,10 @@
 
 			<!-- resetButton  -->
 			<div style="float: right">
-				<input type="submit" class="button"
+				<input type="submit" class="button button2"
 					onclick="document.pressed=this.value" value="Reset">     
 				<!-- submitButton -->
-				<input type="submit" class="button"
+				<input type="submit" class="button button2"
 					onclick="document.pressed=this.value" value="Submit"> <br>
 			</div>
 

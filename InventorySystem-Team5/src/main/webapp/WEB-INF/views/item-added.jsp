@@ -9,7 +9,7 @@
 <body>
 	<h3>Success</h3>
 	<p>${ addingStatusMessage }</p>
-	<a href="${pageContext.request.contextPath}/product/list" class="button button1"/>Back To Product List</a>
+	<a href="${pageContext.request.contextPath}/product/list" class="button button2"/>Back To Product List</a>
 	<a href="${pageContext.request.contextPath}/transaction/usageSummary" class="button button2"/>Check Out</a>
 </body>
 </html>
